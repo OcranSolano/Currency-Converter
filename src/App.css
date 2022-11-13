@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');
+
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  text-align: center;
+  background-color: rgb(23, 84, 119); /* dark seagreen */
+  font-family: 'Quantico', sans-serif;
+}
+
+main {
+  width: 100%;
+  height: 100%;
+}
+
+h1 {
+  margin: 0;
+  margin-bottom: .5rem;
+}
+
+.container {
+  background-color: whitesmoke;
+  border-radius: 0.5em;
+  width: 65%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 3.66fr 3.66fr auto 3.66fr;
+  grid-column-gap: 15px;
+  grid-row-gap: 10px;
+  padding: 20px;
+  align-items: center;
+}
+
+.title { grid-area: 1 / 1 / 2 / 5; }
+.amount { grid-area: 2 / 1 / 3 / 2; }
+.from { grid-area: 2 / 2 / 3 / 3; }
+.swap { grid-area: 2 / 3 / 3 / 4; }
+.to { grid-area: 2 / 4 / 3 / 5; }
+.result { grid-area: 3 / 1 / 4 / 4; justify-self: start; }
+.convert { grid-area: 3 / 4 / 4 / 5; }
+
+.input {
+  border: 1px solid #333;
+  border-radius: 0.3em;
+}
+
+.from, .to { width: 100%; }
+
+.swap {
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+select { border: 1px solid #333; border-radius: 0.3em; }
+
+.output-1,
+.output-2,
+.time {
+  float: left;
+}
+
+.btn {
+  justify-self: end;
+}
