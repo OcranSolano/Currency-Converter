@@ -14,7 +14,7 @@ export default function Convert(props) {
     const to = props.data[2].slice(0,3);
 
     function execute() {
-        if (props.data[1] === props.data[2]) {
+        if (props.data[1] === props.data[2] || amount === '0') {
             props.result(amount); //STRING
         } else {
             fetch(`https://api.apilayer.com/exchangerates_data/convert?to=${to}&from=${from}&amount=${amount}`, requestOptions)

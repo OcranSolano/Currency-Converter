@@ -16,6 +16,8 @@ export default function Amount(props) {
                 id='amount' 
                 placeholder='amount' 
                 value={amount} 
+                min='0'
+                oninput='validity.valid || (value="");'
                 onChange={update}>
             </input>
             <label for='amount'>Amount</label> 
