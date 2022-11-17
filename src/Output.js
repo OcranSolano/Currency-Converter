@@ -19,56 +19,61 @@ export default function Output(props) {
             from = 'Emirati Dirham';
             break;
         case 'ANG':
-            from = 'Dutch Guilder'
+            from = 'Dutch Guilder';
             break;
         case 'AWG':
-            from = 'Aruban or Dutch Florin'
+            from = 'Aruban or Dutch Florin';
             break;
         case 'BAM':
-            from = 'Bosnian Covertible Mark '
+            from = 'Bosnian Covertible Mark ';
             break;
-        case '':
-            from = ''
+        case 'BBD':
+            from = 'Barbadian or Bajan Dollar';
             break;
-        case '':
-            from = ''
+        case 'IMP':
+            from = 'Isle of Man or Manx Pound';
             break;
-        case '':
-            from = ''
+        case 'KYD':
+            from = 'Caymanian Dollar';
             break;
-        case '':
-            from = ''
+        case 'LAK':
+            from = 'Lao Kip';
             break;
-        case '':
-            from = ''
+        case 'LSL':
+            from = 'Lesotho or Basotho Loti';
             break;
-        case '':
-            from = ''
+        case 'MMK':
+            from = 'Myanmar or Burmese Kyat';
             break;
-        case '':
-            from = ''
+        case 'PEN':
+            from = 'Peruvian Sol';
             break;
-        case '':
-            from = ''
+        case 'SAR':
+            from = 'Saudi Riyal';
             break;
-        case '':
-            from = ''
+        case 'STN':
+            from = 'S\u00e3o Tom\u00e9an Dobra';
             break;
-        case '':
-            from = ''
+        case 'TTD':
+            from = 'Trinidadian Dollar';
             break;
-        case '':
-            from = ''
+        case 'VEF':
+            from = 'Venezuelan Bol\u00edvar';
             break;
-        
-        
-        
-        
+        case 'XAF':
+            from = 'Central African Franc';
+            break;
+        case 'XOF':
+            from = 'CFA Franc';
+            break;
+        case 'ZMK':
+            from = 'Zambien Kwacha';
+            break;
         default:
-            console.log('switch case')
+            console.log('switch case');
     }
 
-    if (amount > 1 || amount === 9) from += 's'; // Some currencies don't apply (JPY, ALL, ANG, AWG, BGN, BRL, BWP), also make singular if > 1 decimal
+    if (amount > 1 || amount === 9) from += 's'; // Some currencies don't apply (JPY, ALL, ANG, AWG, BGN, BRL, BWP, CNY, CRC, CZK, DKK, GEL, GTQ, ISK, KPW, KRW, KZT, LSL, LTL, LVL, MDL, MGA, MVR, MZN, NOK, PAB, PEN, PGK, PLN, PYG, RON, SEK, SVC, SZL, THB, TJS, TOP, TRY, UAH, UZS, VEF, VUV, WST, XDR, ZAR, ZMK, ZMW), also make singular if > 1 decimal
     if (result !== '1' && result !== 1) to += 's';
 
     return (

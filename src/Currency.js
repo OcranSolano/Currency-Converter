@@ -4,50 +4,50 @@ const currencies = [
     "Select Currency",
     "USD — United States Dollar",
     "EUR — Euro",
-    "GBP — British Pound Sterling",
-    "JPY — Japanese Yen",
+    "GBP — British Pound Sterling", // alt output
+    "JPY — Japanese Yen", // alt plural
     "RUB — Russian Ruble",
     "CAD — Canadian Dollar",
-    "AED — United Arab Emirates Dirham",
+    "AED — United Arab Emirates Dirham", // alt output
     "AFN — Afghan Afghani",
-    "ALL — Albanian Lek",
+    "ALL — Albanian Lek", // alt plural
     "AMD — Armenian Dram",
-    "ANG — Netherlands Antillean Guilder",
+    "ANG — Netherlands Antillean Guilder", // alt output // alt plural
     "AOA — Angolan Kwanza",
     "ARS — Argentine Peso",
     "AUD — Australian Dollar",
-    "AWG — Aruban Florin",
+    "AWG — Aruban Florin", // alt output
     "AZN — Azerbaijani Manat",
-    "BAM — Bosnia-Herzegovina Convertible Mark",
-    "BBD — Barbadian Dollar",
+    "BAM — Bosnia-Herzegovina Convertible Mark", // alt output
+    "BBD — Barbadian Dollar", // alt output
     "BDT — Bangladeshi Taka",
-    "BGN — Bulgarian Lev",
+    "BGN — Bulgarian Lev", // alt plural
     "BHD — Bahraini Dinar",
     "BIF — Burundian Franc",
-    "BMD — Bermudan Dollar",
-    "BND — Brunei Dollar",
+    "BMD — Bermudian Dollar",
+    "BND — Bruneian Dollar",
     "BOB — Bolivian Boliviano",
-    "BRL — Brazilian Real",
+    "BRL — Brazilian Real", // alt plural
     "BSD — Bahamian Dollar",
     "BTC — Bitcoin",
     "BTN — Bhutanese Ngultrum",
-    "BWP — Botswanan Pula",
-    "BYN — New Belarusian Ruble",
-    "BYR — Belarusian Ruble",
-    "BZD — Belize Dollar",
+    "BWP — Botswanan Pula", // alt plural
+    "BYN — (New) Belarusian Ruble",
+    "BYR — (Old) Belarusian Ruble",
+    "BZD — Belizean Dollar",
     "CDF — Congolese Franc",
     "CHF — Swiss Franc",
-    "CLF — Chilean Unit of Account (UF)",
+    "CLF — Chilean Unit of Account (UF)", // ???
     "CLP — Chilean Peso",
-    "CNY — Chinese Yuan",
+    "CNY — Chinese Yuan Renminbi", // alt plural
     "COP — Colombian Peso",
-    "CRC — Costa Rican Col\u00f3n",
+    "CRC — Costa Rican Col\u00f3n", // alt plural
     "CUC — Cuban Convertible Peso",
     "CUP — Cuban Peso",
     "CVE — Cape Verdean Escudo",
-    "CZK — Czech Republic Koruna",
+    "CZK — Czech Republic Koruna", // alt plural
     "DJF — Djiboutian Franc",
-    "DKK — Danish Krone",
+    "DKK — Danish Krone", // alt plural
     "DOP — Dominican Peso",
     "DZD — Algerian Dinar",
     "EGP — Egyptian Pound",
@@ -55,14 +55,14 @@ const currencies = [
     "ETB — Ethiopian Birr",
     "FJD — Fijian Dollar",
     "FKP — Falkland Islands Pound",
-    "GEL — Georgian Lari",
+    "GEL — Georgian Lari", // alt plural
     "GGP — Guernsey Pound",
     "GHS — Ghanaian Cedi",
     "GIP — Gibraltar Pound",
     "GMD — Gambian Dalasi",
     "GNF — Guinean Franc",
-    "GTQ — Guatemalan Quetzal",
-    "GYD — Guyanaese Dollar",
+    "GTQ — Guatemalan Quetzal", // alt plural
+    "GYD — Guyanese Dollar",
     "HKD — Hong Kong Dollar",
     "HNL — Honduran Lempira",
     "HRK — Croatian Kuna",
@@ -70,11 +70,11 @@ const currencies = [
     "HUF — Hungarian Forint",
     "IDR — Indonesian Rupiah",
     "ILS — Israeli New Sheqel",
-    "IMP — Manx pound",
+    "IMP — Isle of Man Pound", // alt output
     "INR — Indian Rupee",
     "IQD — Iraqi Dinar",
     "IRR — Iranian Rial",
-    "ISK — Icelandic Kr\u00f3na",
+    "ISK — Icelandic Kr\u00f3na", // alt plural
     "JEP — Jersey Pound",
     "JMD — Jamaican Dollar",
     "JOD — Jordanian Dinar",
@@ -82,93 +82,93 @@ const currencies = [
     "KGS — Kyrgystani Som",
     "KHR — Cambodian Riel",
     "KMF — Comorian Franc",
-    "KPW — North Korean Won",
-    "KRW — South Korean Won",
+    "KPW — North Korean Won", // alt plural
+    "KRW — South Korean Won", // alt plural
     "KWD — Kuwaiti Dinar",
-    "KYD — Cayman Islands Dollar",
-    "KZT — Kazakhstani Tenge",
-    "LAK — Laotian Kip",
+    "KYD — Cayman Islands Dollar", // alt output
+    "KZT — Kazakhstani Tenge", // alt plural
+    "LAK — Laotian Kip", // alt output
     "LBP — Lebanese Pound",
     "LKR — Sri Lankan Rupee",
     "LRD — Liberian Dollar",
-    "LSL — Lesotho Loti",
-    "LTL — Lithuanian Litas",
-    "LVL — Latvian Lats",
+    "LSL — Lesotho Loti", // alt output // alt plural
+    "LTL — Lithuanian Litas", // alt plural
+    "LVL — Latvian Lat", // alt plural
     "LYD — Libyan Dinar",
     "MAD — Moroccan Dirham",
-    "MDL — Moldovan Leu",
-    "MGA — Malagasy Ariary",
+    "MDL — Moldovan Leu", // alt plural
+    "MGA — Malagasy Ariary", // alt plural
     "MKD — Macedonian Denar",
-    "MMK — Myanma Kyat",
+    "MMK — Myanmar Kyat", // alt output
     "MNT — Mongolian Tugrik",
     "MOP — Macanese Pataca",
     "MRO — Mauritanian Ouguiya",
     "MUR — Mauritian Rupee",
-    "MVR — Maldivian Rufiyaa",
+    "MVR — Maldivian Rufiyaa", // alt plural
     "MWK — Malawian Kwacha",
     "MXN — Mexican Peso",
     "MYR — Malaysian Ringgit",
-    "MZN — Mozambican Metical",
+    "MZN — Mozambican Metical", // alt plural
     "NAD — Namibian Dollar",
     "NGN — Nigerian Naira",
     "NIO — Nicaraguan C\u00f3rdoba",
-    "NOK — Norwegian Krone",
+    "NOK — Norwegian Krone", // alt plural
     "NPR — Nepalese Rupee",
     "NZD — New Zealand Dollar",
     "OMR — Omani Rial",
-    "PAB — Panamanian Balboa",
-    "PEN — Peruvian Nuevo Sol",
-    "PGK — Papua New Guinean Kina",
+    "PAB — Panamanian Balboa", // alt plural
+    "PEN — Peruvian Nuevo Sol", // alt output // alt plural
+    "PGK — Papua New Guinean Kina",// alt plural
     "PHP — Philippine Peso",
     "PKR — Pakistani Rupee",
-    "PLN — Polish Zloty",
-    "PYG — Paraguayan Guarani",
-    "QAR — Qatari Rial",
-    "RON — Romanian Leu",
+    "PLN — Polish Zloty", // alt plural
+    "PYG — Paraguayan Guarani", // alt plural
+    "QAR — Qatari Rial", // or Riyal???
+    "RON — Romanian Leu", // alt plural
     "RSD — Serbian Dinar",
     "RWF — Rwandan Franc",
-    "SAR — Saudi Riyal",
-    "SBD — Solomon Islands Dollar",
+    "SAR — Saudi Arabian Riyal", // alt output
+    "SBD — Solomon Islander Dollar",
     "SCR — Seychellois Rupee",
     "SDG — Sudanese Pound",
-    "SEK — Swedish Krona",
+    "SEK — Swedish Krona", // alt plural
     "SGD — Singapore Dollar",
-    "SHP — Saint Helena Pound",
+    "SHP — Saint Helenian Pound",
     "SLL — Sierra Leonean Leone",
     "SOS — Somali Shilling",
     "SRD — Surinamese Dollar",
-    "STD — S\u00e3o Tom\u00e9 and Pr\u00edncipe Dobra",
-    "SVC — Salvadoran Col\u00f3n",
+    "STN — S\u00e3o Tom\u00e9 and Pr\u00edncipe Dobra", // STD obsolete, STN current // alt output
+    "SVC — Salvadoran Col\u00f3n", // Obsolete
     "SYP — Syrian Pound",
-    "SZL — Swazi Lilangeni",
-    "THB — Thai Baht",
-    "TJS — Tajikistani Somoni",
+    "SZL — Swazi Lilangeni", // alt plural
+    "THB — Thai Baht", // alt plural
+    "TJS — Tajikistani Somoni", // alt plural
     "TMT — Turkmenistani Manat",
     "TND — Tunisian Dinar",
-    "TOP — Tongan Pa\u02bbanga",
-    "TRY — Turkish Lira",
-    "TTD — Trinidad and Tobago Dollar",
+    "TOP — Tongan Pa\u02bbanga", // alt plural
+    "TRY — Turkish Lira", // alt plural
+    "TTD — Trinidad and Tobago Dollar", // alt output
     "TWD — New Taiwan Dollar",
     "TZS — Tanzanian Shilling",
-    "UAH — Ukrainian Hryvnia",
+    "UAH — Ukrainian Hryvnia", // alt plural
     "UGX — Ugandan Shilling",
     "UYU — Uruguayan Peso",
-    "UZS — Uzbekistan Som",
-    "VEF — Venezuelan Bol\u00edvar Fuerte",
+    "UZS — Uzbekistan Som", // alt plural
+    "VEF — Venezuelan Bol\u00edvar Fuerte", // alt output // alt plural
     "VND — Vietnamese Dong",
-    "VUV — Vanuatu Vatu",
-    "WST — Samoan Tala",
-    "XAF — CFA Franc BEAC",
-    "XAG — Silver (troy ounce)",
-    "XAU — Gold (troy ounce)",
+    "VUV — Ni-Vanuatu Vatu",
+    "WST — Samoan Tala", // alt plural
+    "XAF — CFA Franc BEAC", // alt output
+    "XAG — Silver (troy) ounce",
+    "XAU — Gold (troy) ounce",
     "XCD — East Caribbean Dollar",
-    "XDR — Special Drawing Rights",
-    "XOF — CFA Franc BCEAO",
+    "XDR — Special Drawing Rights", // alt plural
+    "XOF — CFA Franc BCEAO", // alt output
     "XPF — CFP Franc",
     "YER — Yemeni Rial",
-    "ZAR — South African Rand",
-    "ZMK — Zambian Kwacha (pre-2013)",
-    "ZMW — Zambian Kwacha",
+    "ZAR — South African Rand", // alt plural
+    "ZMK — Zambian Kwacha (pre-2013)", // alt output // alt plural
+    "ZMW — Zambian Kwacha", // alt plural
     "ZWL — Zimbabwean Dollar"
 ]
 
