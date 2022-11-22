@@ -27,87 +27,104 @@ export default function Output(props) {
         
     }, [from, to])
 
-    function runSwitch(acronym, selection1) {
+    /*useEffect(() => {
+        let acronym1 = props.data[1].slice(0,3);
+        runSwitch(acronym1, true)
+    }, [amount])*/
+
+    function runSwitch(acronym, fromSelected) {
+
         let alt;
+        let alt2;
+
+        function output() { 
+            if(Number(amount) !== 1) alt = alt2; 
+            fromSelected ? setOutput1(alt) : setOutput2(alt); 
+        };
+
         switch (acronym) {
             case 'GBP':
                 alt = 'British Pound';
-                selection1 ? setOutput1(alt) : setOutput2(alt);
+                output();
                 break;
             case 'AED':
                 alt = 'Emirati Dirham';
-                selection1 ? setOutput1(alt) : setOutput2(alt);
+                output();
                 break;
             case 'ANG':
                 alt = 'Dutch Guilder';
-                selection1 ? setOutput1(alt) : setOutput2(alt);
+                output();
                 break;
             case 'AWG':
                 alt = 'Aruban or Dutch Florin';
-                selection1 ? setOutput1(alt) : setOutput2(alt);
+                output();
                 break;
             case 'BAM':
                 alt = 'Bosnian Covertible Mark';
-                selection1 ? setOutput1(alt) : setOutput2(alt);
+                output();
                 break;
             case 'BBD':
                 alt = 'Barbadian or Bajan Dollar';
-                selection1 ? setOutput1(alt) : setOutput2(alt);
+                output();
                 break;
             case 'IMP':
                 alt = 'Isle of Man or Manx Pound';
-                selection1 ? setOutput1(alt) : setOutput2(alt);
+                output();
                 break;
+            case 'JPY':
+                alt = 'Japanese Yen';
+                alt2 = 'Japanese Yen';
             case 'KYD':
                 alt = 'Caymanian Dollar';
-                selection1 ? setOutput1(alt) : setOutput2(alt);
+                output();
                 break;
             case 'LAK':
                 alt = 'Lao Kip';
-                selection1 ? setOutput1(alt) : setOutput2(alt);
+                output();
                 break;
             case 'LSL':
                 alt = 'Lesotho or Basotho Loti';
-                selection1 ? setOutput1(alt) : setOutput2(alt);
+                alt2 = 'Lesotho or Basotho Maloti'; 
+                output();
                 break;
             case 'MMK':
                 alt = 'Myanmar or Burmese Kyat';
-                selection1 ? setOutput1(alt) : setOutput2(alt);
+                output();
                 break;
             case 'PEN':
                 alt = 'Peruvian Sol';
-                selection1 ? setOutput1(alt) : setOutput2(alt);
+                output();
                 break;
             case 'SAR':
                 alt = 'Saudi Riyal';
-                selection1 ? setOutput1(alt) : setOutput2(alt);
+                output();
                 break;
             case 'STN':
                 alt = 'S\u00e3o Tom\u00e9an Dobra';
-                selection1 ? setOutput1(alt) : setOutput2(alt);
+                output();
                 break;
             case 'TTD':
                 alt = 'Trinidadian Dollar';
-                selection1 ? setOutput1(alt) : setOutput2(alt);
+                output();
                 break;
             case 'VEF':
                 alt = 'Venezuelan Bol\u00edvar';
-                selection1 ? setOutput1(alt) : setOutput2(alt);
+                output();
                 break;
             case 'XAF':
                 alt = 'Central African Franc';
-                selection1 ? setOutput1(alt) : setOutput2(alt);
+                output();
                 break;
             case 'XOF':
                 alt = 'CFA Franc';
-                selection1 ? setOutput1(alt) : setOutput2(alt);
+                output();
                 break;
             case 'ZMK':
                 alt = 'Zambian Kwacha';
-                selection1 ? setOutput1(alt) : setOutput2(alt);
+                output();
                 break;
             default:
-                selection1 ? setOutput1(from) : setOutput2(to);
+                fromSelected ? setOutput1(from) : setOutput2(to);
         }
     }
     
