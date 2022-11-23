@@ -27,36 +27,63 @@ export default function Output(props) {
         
     }, [from, to])
 
-    /*useEffect(() => {
+    useEffect(() => {
         let acronym1 = props.data[1].slice(0,3);
         runSwitch(acronym1, true)
-    }, [amount])*/
+    }, [amount])
 
     function runSwitch(acronym, fromSelected) {
 
         let alt;
-        let alt2;
+        let plural;
 
-        function output() { 
-            if(Number(amount) !== 1) alt = alt2; 
+        function output() { // called from switch items 
+
+            if (Number(amount) !== 1 && !plural) { // alt outputs, AMOUNT > 1
+                alt += 's';
+            }
+
+            if (Number(amount) !== 1 && alt === plural) { // alt same as plural, AMOUNT > 1
+                alt = from;
+            }
+
+            if (plural) { // alt plurals
+                if (Number(amount) !== 1) {
+                    alt = plural;
+                } else {
+                    alt = acronym;
+                }
+                
+            }
+
+
+            /*if (fromSelected) {
+                if (!alt) alt = from;
+            } else {
+                if (!alt) alt = to;
+            }*/
+            
+
             fromSelected ? setOutput1(alt) : setOutput2(alt); 
         };
 
         switch (acronym) {
-            case 'GBP':
-                alt = 'British Pound';
-                output();
-                break;
             case 'AED':
                 alt = 'Emirati Dirham';
                 output();
                 break;
+            case 'ALL':
+                plural = 'Albanian Leke';
+                output();
+                break;
             case 'ANG':
                 alt = 'Dutch Guilder';
+                plural = 'fix';
                 output();
                 break;
             case 'AWG':
                 alt = 'Aruban or Dutch Florin';
+                plural = 'fix';
                 output();
                 break;
             case 'BAM':
@@ -67,15 +94,72 @@ export default function Output(props) {
                 alt = 'Barbadian or Bajan Dollar';
                 output();
                 break;
+            case 'BGN':
+                plural = 'Bulgarian Leva';
+                output();
+                break;
+            case 'BRL':
+                plural = 'Brazilian Reais';
+                output();
+                break;
+            case 'BWP':
+                plural = 'Botswanan Pule';
+                output();
+                break;
+            case 'CNY':
+                alt = plural = from;
+                output();
+                break;
+            case 'CRC':
+                plural = 'Costa Rican Col\u00f3nes';
+                output();
+                break;
+            case 'CZK':
+                plural = 'Czech Koruny';
+                output();
+                break;
+            case 'DKK':
+                plural = 'Danish Kroner';
+                output();
+                break;
+            case 'GBP':
+                alt = 'British Pound';
+                output();
+                break;
+            case 'GEL':
+                plural = 'Georgian Lari';
+                output();
+                break;
+            case 'GTQ':
+                plural = 'Guatemalan Quetzales';
+                output();
+                break;
             case 'IMP':
                 alt = 'Isle of Man or Manx Pound';
                 output();
                 break;
+            case 'ISK':
+                plural = 'Icelandic Kr\u00f3nur';
+                output();
+                break;
             case 'JPY':
-                alt = 'Japanese Yen';
-                alt2 = 'Japanese Yen';
+                alt = plural = from;
+                output();
+                break;
             case 'KYD':
                 alt = 'Caymanian Dollar';
+                output();
+                break;
+            case 'KPW':
+                alt = plural = from;
+                output();
+                break;
+            case 'KRW':
+                alt = plural = from;
+                output();
+                break;
+            case 'KZT':
+                alt = plural = from;
                 output();
                 break;
             case 'LAK':
@@ -84,52 +168,161 @@ export default function Output(props) {
                 break;
             case 'LSL':
                 alt = 'Lesotho or Basotho Loti';
-                alt2 = 'Lesotho or Basotho Maloti'; 
+                plural = 'Lesotho or Basotho Maloti'; 
+                output();
+                break;
+            case 'LTL':
+                plural = 'Lithuanian Litai';
+                output();
+                break;
+            case 'LVL':
+                plural = 'Latvian Lati';
+                output();
+                break;
+            case 'MDL':
+                plural = 'Moldovan Lei';
+                output();
+                break;
+            case 'MGA':
+                alt = plural = from;
                 output();
                 break;
             case 'MMK':
                 alt = 'Myanmar or Burmese Kyat';
                 output();
                 break;
+            case 'MVR':
+                alt = plural = from;
+                output();
+                break;
+            case 'MZN':
+                plural = 'Mozambican Meticais';
+                output();
+                break;
+            case 'NOK':
+                plural = 'Norwegian Kroner';
+                output();
+                break;
+            case 'PAB':
+                alt = plural = from;
+                output();
+                break;
             case 'PEN':
                 alt = 'Peruvian Sol';
+                plural = alt + 'es';
+                output();
+                break;
+            case 'PGK':
+                alt = plural = from;
+                output();
+                break;
+            case 'PLN':
+                plural = 'Polish Zlotych';
+                output();
+                break;
+            case 'PYG':
+                alt = plural = from;
+                output();
+                break;
+            case 'RON':
+                plural = 'Romanian Lei';
                 output();
                 break;
             case 'SAR':
                 alt = 'Saudi Riyal';
                 output();
                 break;
+            case 'SEK':
+                plural = 'Swedish Kronor';
+                output();
+                break;
             case 'STN':
                 alt = 'S\u00e3o Tom\u00e9an Dobra';
+                output();
+                break;
+            case 'SVC':
+                plural = 'Salvadoran Col\u00f3nes';
+                output();
+                break;
+            case 'SZL':
+                plural = 'Swazi Emalangeni';
+                output();
+                break;
+            case 'THB':
+                alt = plural = from;
+                output();
+                break;
+            case 'TJS':
+                alt = plural = from;
+                output();
+                break;
+            case 'TOP':
+                alt = plural = from;
+                output();
+                break;
+            case 'TRY':
+                plural = 'Turkish Lire';
                 output();
                 break;
             case 'TTD':
                 alt = 'Trinidadian Dollar';
                 output();
                 break;
+            case 'UAH':
+                plural = 'Ukrainian Hryvni';
+                output();
+                break;
+            case 'UZS':
+                plural = 'Uzbekistani Sums';
+                output();
+                break;
             case 'VEF':
                 alt = 'Venezuelan Bol\u00edvar';
+                plural = alt + 'es';
+                output();
+                break;
+            case 'VUV':
+                alt = plural = from;
+                output();
+                break;
+            case 'WST':
+                alt = plural = from;
                 output();
                 break;
             case 'XAF':
                 alt = 'Central African Franc';
                 output();
                 break;
+            case 'XDR':
+                plural = 'update';
+                output();
+                break;
             case 'XOF':
                 alt = 'CFA Franc';
                 output();
                 break;
-            case 'ZMK':
-                alt = 'Zambian Kwacha';
+            case 'ZAR':
+                alt = plural = from;
                 output();
                 break;
-            default:
+            case 'ZMK':
+                alt = 'Zambian Kwacha';
+                plural = alt;
+                output();
+                break;
+            case 'ZMW':
+                alt = plural = from;
+                output();
+                break;
+             
+            default: // for all other currencies 
+                if (Number(amount) !== 1) {
+                from += 's';
+                }
                 fromSelected ? setOutput1(from) : setOutput2(to);
         }
+        
     }
-    
-    if (amount > 1 || amount < 1) from += 's'; // Some currencies don't apply (JPY, ALL, ANG, AWG, BGN, BRL, BWP, CNY, CRC, CZK, DKK, GEL, GTQ, ISK, KPW, KRW, KZT, LSL, LTL, LVL, MDL, MGA, MVR, MZN, NOK, PAB, PEN, PGK, PLN, PYG, RON, SEK, SVC, SZL, THB, TJS, TOP, TRY, UAH, UZS, VEF, VUV, WST, XDR, ZAR, ZMK, ZMW), also make singular if > 1 decimal
-    if (result !== '1' && result !== 1) to += 's';
 
     return (
         <div className='result'>
@@ -141,3 +334,4 @@ export default function Output(props) {
 }
 
 // ADD A LOADING ICON WHILE WAITING FOR API CALL
+// CHECK THAT ACCENTS ARE USED CORRECTLY
