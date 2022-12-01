@@ -6,7 +6,7 @@ import Output from './Output';
 
 export default function Container() {
 
-    let defaults = [1, 'USD — United States Dollar', 'EUR — Euro', 1]; // default values
+    let defaults = [1, '🇺🇸 USD — United States Dollar', '🇪🇺 EUR — Euro', 1]; // default values
     const [ data, setData ] = useState(defaults); // dependencies for all components (props)
     
     console.log(`Current data: ${data}`)

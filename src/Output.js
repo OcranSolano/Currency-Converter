@@ -3,32 +3,32 @@ import React, { useState, useEffect } from 'react';
 export default function Output(props) {
 
     const amount = props.data[0];
-    let from = props.data[1].slice(6); // name w/o acronym
-    let to = props.data[2].slice(6); // name w/o acronym
+    let from = props.data[1].slice(11); // name w/o acronym
+    let to = props.data[2].slice(11); // name w/o acronym
     const result = props.data[3];
     
     // states are needed for render as useEffect runs afterward, causing full names to display (state setters used in switch logic to render alt outputs)
-    const [ output1, setOutput1 ] = useState(from) 
-    const [ output2, setOutput2 ] = useState(to)
+    const [ output1, setOutput1 ] = useState(from);
+    const [ output2, setOutput2 ] = useState(to);
     // stores FROM and TO for useEffect comparison. State setters used to same hook to store new values for future use
-    const [ prevFrom, setPrevFrom ] = useState(from)
-    const [ prevTo, setPrevTo ] = useState(to)
+    const [ prevFrom, setPrevFrom ] = useState(from);
+    const [ prevTo, setPrevTo ] = useState(to);
     
     useEffect(() => { // when user selects new FROM or TO, conditionals are used to determine which selection was altered: if newly selected FROM or TO differs with the values saved in PREV states, the switch statement is called with the respective FROM or TO acronym and a boolean to semantically indicate which state to update. If no alt output for currency, update the output states by default with the FROM and TO values from props.
 
         // console.log(`PREV is ${prev}, FROM is ${from}`)
-        let acronym1 = props.data[1].slice(0,3);
-        let acronym2 = props.data[2].slice(0,3);
+        let acronym1 = props.data[1].slice(5,8);
+        let acronym2 = props.data[2].slice(5,8);
         if (prevFrom !== from) runSwitch(acronym1, true) // FROM has changed
         if (prevTo !== to) runSwitch(acronym2, false) // TO has changed
-        
+
         setPrevFrom(from)
         setPrevTo(to)
         
     }, [from, to])
 
     useEffect(() => {
-        let acronym1 = props.data[1].slice(0,3);
+        let acronym1 = props.data[1].slice(5,8);
         runSwitch(acronym1, true)
     }, [amount])
 
@@ -39,23 +39,16 @@ export default function Output(props) {
 
         function output() { // called from switch items 
 
-            if (Number(amount) !== 1 && !plural) { // alt outputs, AMOUNT > 1
-                alt += 's';
+            if (Number(amount) !== 1) {
+                if (plural) alt = plural;
+                if (alt && !plural) alt += 's';
+            } else {
+                plural && fromSelected ? alt = from : alt = to;
             }
 
-            if (Number(amount) !== 1 && alt === plural) { // alt same as plural, AMOUNT > 1
-                alt = from;
+            if (alt + plural == 2) {
+                fromSelected ? alt = from : alt = to;
             }
-
-            if (plural) { // alt plurals
-                if (Number(amount) !== 1) {
-                    alt = plural;
-                } else {
-                    alt = acronym;
-                }
-                
-            }
-
 
             /*if (fromSelected) {
                 if (!alt) alt = from;
@@ -107,7 +100,7 @@ export default function Output(props) {
                 output();
                 break;
             case 'CNY':
-                alt = plural = from;
+                alt = plural = 1;
                 output();
                 break;
             case 'CRC':
@@ -143,7 +136,7 @@ export default function Output(props) {
                 output();
                 break;
             case 'JPY':
-                alt = plural = from;
+                alt = plural = 1;
                 output();
                 break;
             case 'KYD':
@@ -151,15 +144,15 @@ export default function Output(props) {
                 output();
                 break;
             case 'KPW':
-                alt = plural = from;
+                alt = plural = 1;
                 output();
                 break;
             case 'KRW':
-                alt = plural = from;
+                alt = plural = 1;
                 output();
                 break;
             case 'KZT':
-                alt = plural = from;
+                alt = plural = 1;
                 output();
                 break;
             case 'LAK':
@@ -184,7 +177,7 @@ export default function Output(props) {
                 output();
                 break;
             case 'MGA':
-                alt = plural = from;
+                alt = plural = 1;
                 output();
                 break;
             case 'MMK':
@@ -192,7 +185,7 @@ export default function Output(props) {
                 output();
                 break;
             case 'MVR':
-                alt = plural = from;
+                alt = plural = 1;
                 output();
                 break;
             case 'MZN':
@@ -204,7 +197,7 @@ export default function Output(props) {
                 output();
                 break;
             case 'PAB':
-                alt = plural = from;
+                alt = plural = 1;
                 output();
                 break;
             case 'PEN':
@@ -213,7 +206,7 @@ export default function Output(props) {
                 output();
                 break;
             case 'PGK':
-                alt = plural = from;
+                alt = plural = 1;
                 output();
                 break;
             case 'PLN':
@@ -221,7 +214,7 @@ export default function Output(props) {
                 output();
                 break;
             case 'PYG':
-                alt = plural = from;
+                alt = plural = 1;
                 output();
                 break;
             case 'RON':
@@ -249,15 +242,15 @@ export default function Output(props) {
                 output();
                 break;
             case 'THB':
-                alt = plural = from;
+                alt = plural = 1;
                 output();
                 break;
             case 'TJS':
-                alt = plural = from;
+                alt = plural = 1;
                 output();
                 break;
             case 'TOP':
-                alt = plural = from;
+                alt = plural = 1;
                 output();
                 break;
             case 'TRY':
@@ -286,11 +279,11 @@ export default function Output(props) {
                 output();
                 break;
             case 'VUV':
-                alt = plural = from;
+                alt = plural = 1;
                 output();
                 break;
             case 'WST':
-                alt = plural = from;
+                alt = plural = 1;
                 output();
                 break;
             case 'XAF':
@@ -306,7 +299,7 @@ export default function Output(props) {
                 output();
                 break;
             case 'ZAR':
-                alt = plural = from;
+                alt = plural = 1;
                 output();
                 break;
             case 'ZMK':
@@ -315,7 +308,7 @@ export default function Output(props) {
                 output();
                 break;
             case 'ZMW':
-                alt = plural = from;
+                alt = plural = 1;
                 output();
                 break;
              

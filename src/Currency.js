@@ -12,7 +12,7 @@ const currencies = [
     "🇦🇫 AFN — Afghan Afghani",
     "🇦🇱 ALL — Albanian Lek", // alt plural
     "🇦🇲 AMD — Armenian Dram",
-    "ANG — Netherlands Antillean Guilder", // alt output // alt plural
+    "🇳🇱 ANG — Netherlands Antillean Guilder", // alt output // alt plural
     "🇦🇴 AOA — Angolan Kwanza",
     "🇦🇷 ARS — Argentine Peso",
     "🇦🇺 AUD — Australian Dollar",
@@ -29,7 +29,7 @@ const currencies = [
     "🇧🇴 BOB — Bolivian Boliviano",
     "🇧🇷 BRL — Brazilian Real", // alt plural
     "🇧🇸 BSD — Bahamian Dollar",
-    "BTC — Bitcoin",
+    "🪙 BTC — Bitcoin",
     "🇧🇹 BTN — Bhutanese Ngultrum",
     "🇧🇼 BWP — Botswanan Pula", // alt plural
     "🇧🇾 BYN — (New) Belarusian Ruble",
@@ -158,19 +158,23 @@ const currencies = [
     "🇻🇳 VND — Vietnamese Dong",
     "🇻🇺 VUV — Ni-Vanuatu Vatu",
     "🇼🇸 WST — Samoan Tala", // alt plural
-    "XAF — CFA Franc BEAC", // alt output
-    "XAG — Silver (troy) ounce",
-    "XAU — Gold (troy) ounce",
-    "XCD — East Caribbean Dollar",
-    "XDR — Special Drawing Rights", // alt plural
-    "XOF — CFA Franc BCEAO", // alt output
-    "XPF — CFP Franc",
+    "🌍 XAF — CFA Franc BEAC", // alt output
+    "🪙 XAG — Silver (troy) ounce",
+    "⚱️ XAU — Gold (troy) ounce",
+    "🏝 XCD — East Caribbean Dollar",
+    "🇺🇳 XDR — Special Drawing Rights", // alt plural
+    "🌍 XOF — CFA Franc BCEAO", // alt output
+    "🇵🇫 XPF — CFP Franc",
     "🇾🇪 YER — Yemeni Rial",
     "🇿🇦 ZAR — South African Rand", // alt plural
     "🇿🇲 ZMK — Zambian Kwacha (pre-2013)", // alt output // alt plural
     "🇿🇲 ZMW — Zambian Kwacha", // alt plural
     "🇿🇼 ZWL — Zimbabwean Dollar"
 ]
+
+for (let name of currencies) {
+    console.log(name);
+}
 
 export function FromCurrency(props) {
     const [ fromCurrency, setFromCurrency ] = useState(props.data[1]);
