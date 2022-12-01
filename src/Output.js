@@ -272,6 +272,10 @@ export default function Output(props) {
                 plural = 'Ukrainian Hryvni';
                 output();
                 break;
+            case 'USD':
+                alt = 'US Dollar';
+                output();
+                break;
             case 'UZS':
                 plural = 'Uzbekistani Sums';
                 output();
