@@ -3,8 +3,8 @@ import React, { useState, useEffect } from 'react';
 export default function Output(props) {
 
     const amount = props.data[0];
-    let from = props.data[1].slice(11); // name w/o acronym
-    let to = props.data[2].slice(11); // name w/o acronym
+    let from = props.data[1].slice(6); // name w/o acronym
+    let to = props.data[2].slice(6); // name w/o acronym
     const result = props.data[3];
     
     // states are needed for render as useEffect runs afterward, causing full names to display (state setters used in switch logic to render alt outputs)
@@ -17,8 +17,8 @@ export default function Output(props) {
     useEffect(() => { // when user selects new FROM or TO, conditionals are used to determine which selection was altered: if newly selected FROM or TO differs with the values saved in PREV states, the switch statement is called with the respective FROM or TO acronym and a boolean to semantically indicate which state to update. If no alt output for currency, update the output states by default with the FROM and TO values from props.
 
         // console.log(`PREV is ${prev}, FROM is ${from}`)
-        let acronym1 = props.data[1].slice(5,8);
-        let acronym2 = props.data[2].slice(5,8);
+        let acronym1 = props.data[1].slice(0,3);
+        let acronym2 = props.data[2].slice(0,3);
         if (prevFrom !== from) filterOutput(acronym1, true) // FROM has changed
         if (prevTo !== to) filterOutput(acronym2, false) // TO has changed
 
@@ -28,7 +28,7 @@ export default function Output(props) {
     }, [from, to])
 
     useEffect(() => {
-        let acronym1 = props.data[1].slice(5,8);
+        let acronym1 = props.data[1].slice(0,3);
         filterOutput(acronym1, true)
     }, [amount])
 

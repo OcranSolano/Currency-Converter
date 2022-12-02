@@ -13,6 +13,8 @@ export default function Convert(props) {
     const from = props.data[1].slice(0,3);
     const to = props.data[2].slice(0,3);
 
+    
+
     function execute() {
         if (props.data[1] === props.data[2] || amount === '0') {
             props.result(amount); //STRING
@@ -25,7 +27,7 @@ export default function Convert(props) {
             .then(console.log('DONE'))
             .catch(error => alert('error', error));
         }
-        
+        console.log(from, to)
     }
 
     return (
