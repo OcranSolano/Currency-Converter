@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
 const currencies = [
-    "Select Currency",
     "🇺🇸 USD — United States Dollar",
     "🇪🇺 EUR — Euro",
     "🇬🇧 GBP — British Pound Sterling", // alt output
@@ -172,9 +171,8 @@ const currencies = [
     "🇿🇼 ZWL — Zimbabwean Dollar"
 ]
 
-for (let name of currencies) {
-    console.log(name);
-}
+// for (let name of currencies) { // style currency name here
+    // console.log(name);
 
 export function FromCurrency(props) {
     const [ fromCurrency, setFromCurrency ] = useState(props.data[1]);
@@ -198,6 +196,7 @@ export function FromCurrency(props) {
                 onChange={selectionHandler}
                 id='startcurrency' 
                 aria-label='floating label'>
+                <optgroup label='Select Currency'></optgroup>
                 {currencies.map(currency => (
                 <option value={currency} key={currency.toString()}>{currency}</option>
                 ))}
@@ -229,6 +228,7 @@ export function ToCurrency(props) {
                 onChange={selectionHandler} 
                 id='endcurrency' 
                 aria-label='floating label'>
+                <optgroup label='Select Currency'></optgroup>
                 {currencies.map(currency => (
                 <option value={currency} key={currency.toString()}>{currency}</option>
                 ))}
