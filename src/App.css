@@ -28,7 +28,7 @@ h1 {
   margin: 0 auto;
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
-  grid-template-columns: 3.66fr 3.66fr auto 3.66fr;
+  grid-template-columns: 3fr 4fr auto 4fr;
   grid-column-gap: 15px;
   grid-row-gap: 10px;
   padding: 20px;
@@ -54,6 +54,10 @@ h1 {
   cursor: pointer;
   font-weight: bold;
   font-size: 1.5rem;
+  padding: 10px;
+  background-color: white;
+  border: 1px solid #ced4da;
+  border-radius: 50%;
 }
 
 select { border: 1px solid #333; border-radius: 0.3em; }
@@ -66,8 +70,4 @@ select { border: 1px solid #333; border-radius: 0.3em; }
 
 .btn {
   justify-self: end;
-}
-
-.name {
-  color: red;
 }
