@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
 
 body {
   margin: 0;
@@ -8,7 +9,8 @@ body {
   min-height: 100vh;
   text-align: center;
   background-color: rgb(23, 84, 119); /* dark seagreen */
-  font-family: 'Quantico', sans-serif;
+  /* font-family: 'Quantico', sans-serif; */
+  font-family: 'Josefin Sans', sans-serif;
 }
 
 main {
