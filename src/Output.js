@@ -259,7 +259,6 @@ export default function Output(props) {
     function setSymbols(acronym, fromSelected) {
         let symbol = '';
         const dollars = ['ARS', 'AUD', 'BSD', 'BBD', 'BMD', 'BND', 'CAD', 'KYD', 'CLP', 'COP', 'XCD', 'SVC', 'FJD', 'GYD', 'HKD', 'LRD', 'MXN', 'NAD', 'NZD', 'SGD', 'SBD', 'SRD', 'USD'];
-        const other = ['BZD', 'BOB', 'BRL', 'DOP', 'JMD', 'NIO', 'TWD', 'TTD', 'UYU', 'ZWL']; // 10
         const pounds = ['EGP', 'FKP', 'GIP', 'GGP', 'IMP', 'JEP', 'LBP', 'SHP', 'SYP', 'GBP'];
         const guilder = ['AWG', 'ANG'];
         const Y = ['CNY', 'JPY'];
@@ -300,7 +299,127 @@ export default function Output(props) {
                 break;
             case 'ZWL':
                 symbol = 'Z$';
-                break;  
+                break;
+            case 'EUR':
+                symbol = '€';
+                break;
+            case 'ALL':
+                symbol = 'Lek';
+                break;
+            case 'AFN':
+                symbol = '؋';
+                break;
+            case 'AZN':
+                symbol = '₼';
+                break;
+            case 'BYN':
+                symbol = 'Br';
+                break;
+            case 'BAM':
+                symbol = 'KM';
+                break;
+            case 'BWP':
+                symbol = 'P';
+                break;
+            case 'KHR':
+                symbol = '៛';
+                break;
+            case 'CRC':
+                symbol = '₡';
+                break;
+            case 'HRK':
+                symbol = 'kn';
+                break;
+            case 'CZK':
+                symbol = 'Kč';
+                break;
+            case 'GHS':
+                symbol = '¢';
+                break;
+            case 'GTQ':
+                symbol = 'Q';
+                break;
+            case 'HNL':
+                symbol = 'L';
+                break;
+            case 'HUF':
+                symbol = 'Ft';
+                break;
+            case 'INR':
+                symbol = '₹';
+                break;
+            case 'IDR':
+                symbol = 'Rp';
+                break;
+            case 'ILS':
+                symbol = '₪';
+                break;
+            case 'LAK':
+                symbol = '₭';
+                break;
+            case 'MKD':
+                symbol = 'ден';
+                break;
+            case 'MYR':
+                symbol = 'RM';
+                break;
+            case 'MNT':
+                symbol = '₮';
+                break;
+            case 'MZN':
+                symbol = 'MT';
+                break;
+            case 'NGN':
+                symbol = '₦';
+                break;
+            case 'PAB':
+                symbol = 'B/.';
+                break;
+            case 'PYG':
+                symbol = 'Gs';
+                break;
+            case 'PEN':
+                symbol = 'S/.';
+                break;
+            case 'PLN':
+                symbol = 'zł';
+                break;
+            case 'RON':
+                symbol = 'lei';
+                break;
+            case 'RUB':
+                symbol = '₽';
+                break;
+            case 'RSD':
+                symbol = 'Дин';
+                break;
+            case 'SOS':
+                symbol = 'S';
+                break;
+            case 'ZAR':
+                symbol = 'R';
+                break;
+            case 'CHF':
+                symbol = 'CHF';
+                break;
+            case 'THB':
+                symbol = '฿';
+                break;
+            case 'TRY':
+                symbol = '₺';
+                break;
+            case 'UAH':
+                symbol = '₴';
+                break;
+            case 'VEF':
+                symbol = 'Bs';
+                break;
+            case 'VND':
+                symbol = '₫';
+                break;
+            case 'AED':
+                symbol = `د.إ`;
+                break;
         }
 
         if (dollars.includes(acronym)) symbol = '$'; // 23
