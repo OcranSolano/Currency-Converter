@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Amount from './Amount';
-import { FromCurrency, ToCurrency } from './Currency';
+import { FromCurrency, ToCurrency } from './Select';
 import Convert from './Convert';
 import Output from './Output';
 
