@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { currencies } from './Currencies';
 
 export default function Output(props) {
 
@@ -33,15 +34,25 @@ export default function Output(props) {
     }, [amount])
 
     function filterOutput(acronym, fromSelected) {
+        
+        const selectedCurrency = currencies.find(element => element.name === props.data[1]);
+        //console.log(selectedCurrency);
 
-        let alt;
-        let plural;
+        let alt = selectedCurrency.alt;
+        let plural = selectedCurrency.plural;
+        let symbol = selectedCurrency.symbol;
+
+        console.log(alt, plural, symbol)
+
+        // selectedCurrency.plurallize()
+        
 
         function output() { // called from switch items 
 
             let currency; 
 
             if (Number(amount) !== 1) {
+                // currency = selectedCurrency.plurallize()
                 if (alt && !plural) currency = alt + 's'; // alt output, no plural, ex. GBP
                 if (plural) currency = plural; // alt plural, ex. BRL or PEN
                 if (!alt && !plural) fromSelected ? currency = from + 's': currency = to = 's'; // all other currencies
@@ -55,383 +66,208 @@ export default function Output(props) {
             fromSelected ? setOutput1(currency) : setOutput2(currency);
         };
 
-        switch (acronym) {
-            case 'AED':
-                alt = 'Emirati Dirham';
-                break;
-            case 'ALL':
-                plural = 'Albanian Leke';
-                break;
-            case 'ANG':
-                alt = 'Dutch Guilder';
-                plural = 'fix';
-                break;
-            case 'AWG':
-                alt = 'Aruban or Dutch Florin';
-                plural = 'fix';
-                break;
-            case 'BAM':
-                alt = 'Bosnian Covertible Mark';
-                break;
-            case 'BBD':
-                alt = 'Barbadian or Bajan Dollar';
-                break;
-            case 'BGN':
-                plural = 'Bulgarian Leva';
-                break;
-            case 'BRL':
-                plural = 'Brazilian Reais';
-                break;
-            case 'BWP':
-                plural = 'Botswanan Pule';
-                break;
-            case 'CNY':
-                plural = 'Chinese Yuan Renminbi';
-                break;
-            case 'CRC':
-                plural = 'Costa Rican Col\u00f3nes';
-                break;
-            case 'CZK':
-                alt= 'Czech Koruna';
-                plural = 'Czech Koruny';
-                break;
-            case 'DKK':
-                plural = 'Danish Kroner';
-                break;
-            case 'GBP':
-                alt = 'British Pound';
-                break;
-            case 'GEL':
-                plural = 'Georgian Lari';
-                break;
-            case 'GTQ':
-                plural = 'Guatemalan Quetzales';
-                break;
-            case 'IMP':
-                alt = 'Isle of Man or Manx Pound';
-                break;
-            case 'ISK':
-                plural = 'Icelandic Kr\u00f3nur';
-                break;
-            case 'JPY':
-                plural = 'Japanese Yen';
-                break;
-            case 'KYD':
-                alt = 'Caymanian Dollar';
-                break;
-            case 'KPW':
-                plural = 'North Korean Won';
-                break;
-            case 'KRW':
-                plural = 'South Korean Won';
-                break;
-            case 'KZT':
-                plural = 'Kazakhstani Tenge';
-                break;
-            case 'LAK':
-                alt = 'Lao Kip';
-                break;
-            case 'LSL':
-                alt = 'Lesotho or Basotho Loti';
-                plural = 'Lesotho or Basotho Maloti';
-                break;
-            case 'LTL':
-                plural = 'Lithuanian Litai';
-                break;
-            case 'LVL':
-                plural = 'Latvian Lati';
-                break;
-            case 'MDL':
-                plural = 'Moldovan Lei';
-                break;
-            case 'MGA':
-                plural = 'Malagasy Ariary';
-                break;
-            case 'MMK':
-                alt = 'Myanmar or Burmese Kyat';
-                break;
-            case 'MVR':
-                plural = 'Maldivian Rufiyaa';
-                break;
-            case 'MZN':
-                plural = 'Mozambican Meticais';
-                break;
-            case 'NOK':
-                plural = 'Norwegian Kroner';
-                break;
-            case 'PAB':
-                plural = 'Panamanian Balboa';
-                break;
-            case 'PEN':
-                alt = 'Peruvian Sol';
-                plural = alt + 'es';
-                break;
-            case 'PGK':
-                plural = 'Papua New Guinean Kina';
-                break;
-            case 'PLN':
-                plural = 'Polish Zlotych';
-                break;
-            case 'PYG':
-                plural = 'Paraguayan Guarani';
-                break;
-            case 'RON':
-                plural = 'Romanian Lei';
-                break;
-            case 'SAR':
-                alt = 'Saudi Riyal';
-                break;
-            case 'SEK':
-                plural = 'Swedish Kronor';
-                break;
-            case 'STN':
-                alt = 'S\u00e3o Tom\u00e9an Dobra';
-                break;
-            case 'SVC':
-                plural = 'Salvadoran Col\u00f3nes';
-                break;
-            case 'SZL':
-                plural = 'Swazi Emalangeni';
-                break;
-            case 'THB':
-                plural = 'Thai Baht';
-                break;
-            case 'TJS':
-                plural = 'Tajikistani Somoni';
-                break;
-            case 'TOP':
-                plural = 'Tongan Pa\u02bbanga';
-                break;
-            case 'TRY':
-                plural = 'Turkish Lire';
-                break;
-            case 'TTD':
-                alt = 'Trinidadian Dollar';
-                break;
-            case 'UAH':
-                plural = 'Ukrainian Hryvni';
-                break;
-            case 'USD':
-                alt = 'US Dollar';
-                break;
-            case 'UZS':
-                plural = 'Uzbekistani Sums';
-                break;
-            case 'VEF':
-                alt = 'Venezuelan Bol\u00edvar';
-                plural = alt + 'es';               
-                break;
-            case 'VUV':
-                plural = 'Ni-Vanuatu Vatu';
-                break;
-            case 'WST':
-                plural = 'Samoan Tala';
-                break;
-            case 'XAF':
-                alt = 'Central African Franc';
-                break;
-            case 'XDR':
-                plural = 'update';
-                break;
-            case 'XOF':
-                alt = 'CFA Franc';
-                break;
-            case 'ZAR':
-                plural = 'South African Rand';
-                break;
-            case 'ZMK':
-                alt = 'Zambian Kwacha';
-                plural = alt;               
-                break;
-            case 'ZMW':
-                plural = 'Zambian Kwacha';
-                break;
+        // switch (acronym) {
+        //     case 'AED':
+        //         alt = 'Emirati Dirham';
+        //         break;
+        //     case 'ALL':
+        //         plural = 'Albanian Leke';
+        //         break;
+        //     case 'ANG':
+        //         alt = 'Dutch Guilder';
+        //         plural = 'fix';
+        //         break;
+        //     case 'AWG':
+        //         alt = 'Aruban or Dutch Florin';
+        //         plural = 'fix';
+        //         break;
+        //     case 'BAM':
+        //         alt = 'Bosnian Covertible Mark';
+        //         break;
+        //     case 'BBD':
+        //         alt = 'Barbadian or Bajan Dollar';
+        //         break;
+        //     case 'BGN':
+        //         plural = 'Bulgarian Leva';
+        //         break;
+        //     case 'BRL':
+        //         plural = 'Brazilian Reais';
+        //         break;
+        //     case 'BWP':
+        //         plural = 'Botswanan Pule';
+        //         break;
+        //     case 'CNY':
+        //         plural = 'Chinese Yuan Renminbi';
+        //         break;
+        //     case 'CRC':
+        //         plural = 'Costa Rican Col\u00f3nes';
+        //         break;
+        //     case 'CZK':
+        //         alt= 'Czech Koruna';
+        //         plural = 'Czech Koruny';
+        //         break;
+        //     case 'DKK':
+        //         plural = 'Danish Kroner';
+        //         break;
+        //     // case 'GBP':
+        //     //     alt = 'British Pound';
+        //     //     break;
+        //     case 'GEL':
+        //         plural = 'Georgian Lari';
+        //         break;
+        //     case 'GTQ':
+        //         plural = 'Guatemalan Quetzales';
+        //         break;
+        //     case 'IMP':
+        //         alt = 'Isle of Man or Manx Pound';
+        //         break;
+        //     case 'ISK':
+        //         plural = 'Icelandic Kr\u00f3nur';
+        //         break;
+        //     case 'JPY':
+        //         plural = 'Japanese Yen';
+        //         break;
+        //     case 'KYD':
+        //         alt = 'Caymanian Dollar';
+        //         break;
+        //     case 'KPW':
+        //         plural = 'North Korean Won';
+        //         break;
+        //     case 'KRW':
+        //         plural = 'South Korean Won';
+        //         break;
+        //     case 'KZT':
+        //         plural = 'Kazakhstani Tenge';
+        //         break;
+        //     case 'LAK':
+        //         alt = 'Lao Kip';
+        //         break;
+        //     case 'LSL':
+        //         alt = 'Lesotho or Basotho Loti';
+        //         plural = 'Lesotho or Basotho Maloti';
+        //         break;
+        //     case 'LTL':
+        //         plural = 'Lithuanian Litai';
+        //         break;
+        //     case 'LVL':
+        //         plural = 'Latvian Lati';
+        //         break;
+        //     case 'MDL':
+        //         plural = 'Moldovan Lei';
+        //         break;
+        //     case 'MGA':
+        //         plural = 'Malagasy Ariary';
+        //         break;
+        //     case 'MMK':
+        //         alt = 'Myanmar or Burmese Kyat';
+        //         break;
+        //     case 'MVR':
+        //         plural = 'Maldivian Rufiyaa';
+        //         break;
+        //     case 'MZN':
+        //         plural = 'Mozambican Meticais';
+        //         break;
+        //     case 'NOK':
+        //         plural = 'Norwegian Kroner';
+        //         break;
+        //     case 'PAB':
+        //         plural = 'Panamanian Balboa';
+        //         break;
+        //     case 'PEN':
+        //         alt = 'Peruvian Sol';
+        //         plural = alt + 'es';
+        //         break;
+        //     case 'PGK':
+        //         plural = 'Papua New Guinean Kina';
+        //         break;
+        //     case 'PLN':
+        //         plural = 'Polish Zlotych';
+        //         break;
+        //     case 'PYG':
+        //         plural = 'Paraguayan Guarani';
+        //         break;
+        //     case 'RON':
+        //         plural = 'Romanian Lei';
+        //         break;
+        //     case 'SAR':
+        //         alt = 'Saudi Riyal';
+        //         break;
+        //     case 'SEK':
+        //         plural = 'Swedish Kronor';
+        //         break;
+        //     case 'STN':
+        //         alt = 'S\u00e3o Tom\u00e9an Dobra';
+        //         break;
+        //     case 'SVC':
+        //         plural = 'Salvadoran Col\u00f3nes';
+        //         break;
+        //     case 'SZL':
+        //         plural = 'Swazi Emalangeni';
+        //         break;
+        //     case 'THB':
+        //         plural = 'Thai Baht';
+        //         break;
+        //     case 'TJS':
+        //         plural = 'Tajikistani Somoni';
+        //         break;
+        //     case 'TOP':
+        //         plural = 'Tongan Pa\u02bbanga';
+        //         break;
+        //     case 'TRY':
+        //         plural = 'Turkish Lire';
+        //         break;
+        //     case 'TTD':
+        //         alt = 'Trinidadian Dollar';
+        //         break;
+        //     case 'UAH':
+        //         plural = 'Ukrainian Hryvni';
+        //         break;
+        //     // case 'USD':
+        //     //     alt = 'US Dollar';
+        //     //     break;
+        //     case 'UZS':
+        //         plural = 'Uzbekistani Sums';
+        //         break;
+        //     case 'VEF':
+        //         alt = 'Venezuelan Bol\u00edvar';
+        //         plural = alt + 'es';               
+        //         break;
+        //     case 'VUV':
+        //         plural = 'Ni-Vanuatu Vatu';
+        //         break;
+        //     case 'WST':
+        //         plural = 'Samoan Tala';
+        //         break;
+        //     case 'XAF':
+        //         alt = 'Central African Franc';
+        //         break;
+        //     case 'XDR':
+        //         plural = 'update';
+        //         break;
+        //     case 'XOF':
+        //         alt = 'CFA Franc';
+        //         break;
+        //     case 'ZAR':
+        //         plural = 'South African Rand';
+        //         break;
+        //     case 'ZMK':
+        //         alt = 'Zambian Kwacha';
+        //         plural = alt;               
+        //         break;
+        //     case 'ZMW':
+        //         plural = 'Zambian Kwacha';
+        //         break;
             
             // default: optional
-        }
+        //}
         output();
-        setSymbols(acronym, fromSelected)
+        setSymbols(fromSelected, symbol)
     }
 
     const [ fromSymbol, setFromSymbol ] = useState('$');
     const [ toSymbol, setToSymbol ] = useState('€');
 
-    function setSymbols(acronym, fromSelected) {
-        let symbol = '';
-        const dollars = ['ARS', 'AUD', 'BSD', 'BBD', 'BMD', 'BND', 'CAD', 'KYD', 'CLP', 'COP', 'XCD', 'SVC', 'FJD', 'GYD', 'HKD', 'LRD', 'MXN', 'NAD', 'NZD', 'SGD', 'SBD', 'SRD', 'USD'];
-        const pounds = ['EGP', 'FKP', 'GIP', 'GGP', 'IMP', 'JEP', 'LBP', 'SHP', 'SYP', 'GBP'];
-        const guilder = ['AWG', 'ANG'];
-        const Y = ['CNY', 'JPY'];
-        const won = ['KPW', 'KRW'];
-        const rial = ['IRR', 'OMR', 'QAR', 'SAR', 'YER'];
-        const cyrillic = ['BGN', 'KZT', 'KGS', 'UZS'];
-        const peso = ['CUP', 'PHP'];
-        const rupee = ['MUR', 'NPR', 'PKR', 'SCR', 'LKR'];
-        const nordic = ['DKK', 'ISK', 'NOK', 'SEK'];
-
-        switch (acronym) {
-            case 'BZD':
-                symbol = 'BZ$';
-                break;
-            case 'BOB':
-                symbol = '$b';
-                break;
-            case 'BRL':
-                symbol = 'R$';
-                break;
-            case 'DOP':
-                symbol = 'RD$';
-                break;
-            case 'JMD':
-                symbol = 'J$';
-                break;
-            case 'NIO':
-                symbol = 'C$';
-                break;
-            case 'TWD':
-                symbol = 'NT$';
-                break;
-            case 'TTD':
-                symbol = 'TT$';
-                break;
-            case 'UYU':
-                symbol = '$U';
-                break;
-            case 'ZWL':
-                symbol = 'Z$';
-                break;
-            case 'EUR':
-                symbol = '€';
-                break;
-            case 'ALL':
-                symbol = 'Lek';
-                break;
-            case 'AFN':
-                symbol = '؋';
-                break;
-            case 'AZN':
-                symbol = '₼';
-                break;
-            case 'BYN':
-                symbol = 'Br';
-                break;
-            case 'BAM':
-                symbol = 'KM';
-                break;
-            case 'BWP':
-                symbol = 'P';
-                break;
-            case 'KHR':
-                symbol = '៛';
-                break;
-            case 'CRC':
-                symbol = '₡';
-                break;
-            case 'HRK':
-                symbol = 'kn';
-                break;
-            case 'CZK':
-                symbol = 'Kč';
-                break;
-            case 'GHS':
-                symbol = '¢';
-                break;
-            case 'GTQ':
-                symbol = 'Q';
-                break;
-            case 'HNL':
-                symbol = 'L';
-                break;
-            case 'HUF':
-                symbol = 'Ft';
-                break;
-            case 'INR':
-                symbol = '₹';
-                break;
-            case 'IDR':
-                symbol = 'Rp';
-                break;
-            case 'ILS':
-                symbol = '₪';
-                break;
-            case 'LAK':
-                symbol = '₭';
-                break;
-            case 'MKD':
-                symbol = 'ден';
-                break;
-            case 'MYR':
-                symbol = 'RM';
-                break;
-            case 'MNT':
-                symbol = '₮';
-                break;
-            case 'MZN':
-                symbol = 'MT';
-                break;
-            case 'NGN':
-                symbol = '₦';
-                break;
-            case 'PAB':
-                symbol = 'B/.';
-                break;
-            case 'PYG':
-                symbol = 'Gs';
-                break;
-            case 'PEN':
-                symbol = 'S/.';
-                break;
-            case 'PLN':
-                symbol = 'zł';
-                break;
-            case 'RON':
-                symbol = 'lei';
-                break;
-            case 'RUB':
-                symbol = '₽';
-                break;
-            case 'RSD':
-                symbol = 'Дин';
-                break;
-            case 'SOS':
-                symbol = 'S';
-                break;
-            case 'ZAR':
-                symbol = 'R';
-                break;
-            case 'CHF':
-                symbol = 'CHF';
-                break;
-            case 'THB':
-                symbol = '฿';
-                break;
-            case 'TRY':
-                symbol = '₺';
-                break;
-            case 'UAH':
-                symbol = '₴';
-                break;
-            case 'VEF':
-                symbol = 'Bs';
-                break;
-            case 'VND':
-                symbol = '₫';
-                break;
-            case 'AED':
-                symbol = `د.إ`;
-                break;
-        }
-
-        if (dollars.includes(acronym)) symbol = '$'; // 23
-        if (pounds.includes(acronym)) symbol = '£'; // 10
-        if (guilder.includes(acronym)) symbol = 'ƒ'; // 2
-        if (Y.includes(acronym)) symbol = '¥'; // 2
-        if (rial.includes(acronym)) symbol = '﷼'; // 5
-        if (won.includes(acronym)) symbol = '₩'; // 2
-        if (cyrillic.includes(acronym)) symbol = 'лв'; // 4
-        if (peso.includes(acronym)) symbol = '₱'; // 2
-        if (rupee.includes(acronym)) symbol = '₨'; // 5
-        if (nordic.includes(acronym)) symbol = 'kr' // 4
+    function setSymbols(fromSelected, symbol) {
         
         fromSelected ? setFromSymbol(symbol) : setToSymbol(symbol);
     }
