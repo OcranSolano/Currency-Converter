@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { currencies } from './Currencies';
-import createRoot from 'react-dom';
 
 export default function Output(props) {
 
@@ -35,30 +34,29 @@ export default function Output(props) {
     }, [amount])
 
     function filterOutput(fromSelected) {
-        
-        const selectedCurrency = currencies.find(element => element.name === props.data[1]);
-        //console.log(selectedCurrency);
 
-        let alt = selectedCurrency.alt;
+        let selected;
+
+        fromSelected ? selected = props.data[1] : selected = props.data[2];
+        
+        const selectedCurrency = currencies.find(element => element.name === selected);
+
+        let regName = selectedCurrency.output;
         let plural = selectedCurrency.plural;
         let symbol = selectedCurrency.symbol;
-
-        // console.log(alt, plural, symbol)
-
-        // selectedCurrency.plurallize()
         
         let currency; 
 
         if (Number(amount) !== 1) {
             // currency = selectedCurrency.plurallize()
-            if (alt && !plural) currency = alt + 's'; // alt output, no plural, ex. GBP
+            if (regName && !plural) currency = regName + 's'; // alt output, no plural, ex. GBP
             if (plural) currency = plural; // alt plural, ex. BRL or PEN
-            if (!alt && !plural) fromSelected ? currency = from + 's': currency = to = 's'; // all other currencies
+            if (!regName && !plural) fromSelected ? currency = from + 's': currency = to = 's'; // all other currencies
         } else {
-            if (alt && !plural) currency = alt;
-            if (plural && !alt) fromSelected ? currency = from : currency = to; // alt plural only, ex. BRL
-            if (plural && alt) fromSelected ? currency = alt : currency = alt; // alt output and alt plural, ex. PEN
-            if (!alt && !plural) fromSelected ? currency = from : currency = to; // all other currencies
+            if (regName && !plural) currency = regName;
+            if (plural && !regName) fromSelected ? currency = from : currency = to; // alt plural only, ex. BRL
+            if (plural && regName) fromSelected ? currency = regName : currency = regName; // alt output and alt plural, ex. PEN
+            if (!regName && !plural) fromSelected ? currency = from : currency = to; // all other currencies
         }
 
         fromSelected ? setOutput1(currency) : setOutput2(currency);
@@ -73,7 +71,7 @@ export default function Output(props) {
             </span>
             <br></br>
             <span className='first'>
-                <img className='flag' src='https://flagcdn.com/eu.svg' height='30' alt=''></img>
+                <img className='flag' src='https://flagcdn.com/gb.svg' height='30' alt=''></img>
                 <h2 className='output-2'>{`${toSymbol}${result} ${output2}`}</h2>
             </span>
         </div>
