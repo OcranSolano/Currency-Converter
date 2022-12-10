@@ -11,6 +11,9 @@ export default function Output(props) {
     const [ fromSymbol, setFromSymbol ] = useState('$');
     const [ toSymbol, setToSymbol ] = useState('€');
 
+    const [ fromFlag, setFromFlag ] = useState(currencies[0].flag);
+    const [ toFlag, setToFlag ] = useState(currencies[0].flag);
+
     // states are needed for render as useEffect runs afterward, causing full names to display (state setters used in switch logic to render alt outputs)
     const [ output1, setOutput1 ] = useState(from);
     const [ output2, setOutput2 ] = useState(to);
@@ -44,6 +47,8 @@ export default function Output(props) {
         let regName = selectedCurrency.output;
         let plural = selectedCurrency.plural;
         let symbol = selectedCurrency.symbol;
+        let flag = selectedCurrency.flag;
+        if(!flag) alert ('Get flag for country');
         
         let currency; 
 
@@ -61,17 +66,19 @@ export default function Output(props) {
 
         fromSelected ? setOutput1(currency) : setOutput2(currency);
         fromSelected ? setFromSymbol(symbol) : setToSymbol(symbol);
+        fromSelected ? setFromFlag(flag) : setToFlag(flag);
+        
     }
 
     return (
         <div className='result'>
             <span className='first'>
-                <img className='flag' src='https://flagcdn.com/us.svg' height='15' alt=''></img>
+                <img className='flag' src={`https://flagcdn.com/${fromFlag}.svg`} height='15' alt=''></img>
                 <h6 className='output-1'><span>{fromSymbol}</span>{`${amount} ${output1} = `}</h6>
             </span>
             <br></br>
             <span className='first'>
-                <img className='flag' src='https://flagcdn.com/gb.svg' height='30' alt=''></img>
+                <img className='flag' src={`https://flagcdn.com/${toFlag}.svg`} height='30' alt=''></img>
                 <h2 className='output-2'>{`${toSymbol}${result} ${output2}`}</h2>
             </span>
         </div>
