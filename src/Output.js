@@ -6,7 +6,7 @@ export default function Output(props) {
     const amount = props.data[0];
     let from = props.data[1].slice(6); // name w/o acronym
     let to = props.data[2].slice(6); // name w/o acronym
-    const result = props.data[3];
+    let result = props.data[3];
     
     const [ fromSymbol, setFromSymbol ] = useState('$');
     const [ toSymbol, setToSymbol ] = useState('€');
@@ -49,18 +49,20 @@ export default function Output(props) {
         let symbol = selectedCurrency.symbol;
         let flag = selectedCurrency.flag;
         
-        let currency; 
+        let currency;
+        let condition;
+        fromSelected ? condition = Number(amount) : condition = result;
 
-        if (Number(amount) !== 1) {
+        if (condition !== 1) {
             // currency = selectedCurrency.plurallize()
             if (regName && !plural) currency = regName + 's'; // alt output, no plural, ex. GBP
             if (plural) currency = plural; // alt plural, ex. BRL or PEN
-            if (!regName && !plural) fromSelected ? currency = from + 's': currency = to = 's'; // all other currencies
+            if (!regName && !plural) fromSelected ? currency = from.slice(0,-5) + 's': currency = to.slice(0,-5) + 's'; // all other currencies
         } else {
             if (regName && !plural) currency = regName;
             if (plural && !regName) fromSelected ? currency = from : currency = to; // alt plural only, ex. BRL
             if (plural && regName) fromSelected ? currency = regName : currency = regName; // alt output and alt plural, ex. PEN
-            if (!regName && !plural) fromSelected ? currency = from : currency = to; // all other currencies
+            if (!regName && !plural) fromSelected ? currency = from.slice(0,-5) : currency = to; // all other currencies
         }
 
         fromSelected ? setOutput1(currency) : setOutput2(currency);
@@ -78,7 +80,7 @@ export default function Output(props) {
             <br></br>
             <span className='first'>
                 <img className='flag two' src={`https://flagcdn.com/${toFlag}.svg`} alt=''></img>
-                <h3 className='output-2'>{`${toSymbol}${result} ${output2}`}</h3>
+                <h3 className='output-2'><span>{toSymbol}</span>{`${result} ${output2}`}</h3>
             </span>
         </div>
     )

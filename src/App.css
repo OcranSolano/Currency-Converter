@@ -84,16 +84,16 @@ span { /* for rial symbol in output */
 }
 
 .flag {
-  border-radius: 0.2em;
+  border-radius: 2px;
   margin-right: 5px;
   opacity: 0.95;
   vertical-align: unset;
 }
 
 .one {
-  height: 1.15em;
+  height: 1em;
 }
 
 .two {
-  height: 1.5em;
+  height: 1.55em;
 }

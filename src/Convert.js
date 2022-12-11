@@ -1,3 +1,5 @@
+import React, { useEffect } from 'react';
+
 let myHeaders = new Headers();
 myHeaders.append("apikey", "1IBq1WjxEI5NMiLbXVxXsNPNnEKj8Mp7");
 
@@ -13,7 +15,20 @@ export default function Convert(props) {
     const from = props.data[1].slice(0,3);
     const to = props.data[2].slice(0,3);
 
-    
+    // useEffect(() => {
+    //     if (props.data[1] === props.data[2] || amount === '0') {
+    //         props.result(amount); //STRING
+    //     } else {
+    //         fetch(`https://api.apilayer.com/exchangerates_data/convert?to=${to}&from=${from}&amount=${amount}`, requestOptions)
+    //         /*.then(response => response.text())*/
+    //         .then(response => response.json())
+    //         /*.then(result => console.log(result))*/
+    //         .then(result => props.result(result))
+    //         .then(console.log('DONE'))
+    //         .catch(error => alert('error', error));
+    //     }
+    //     console.log(from, to)
+    // },[amount, from, to])
 
     function execute() {
         if (props.data[1] === props.data[2] || amount === '0') {
