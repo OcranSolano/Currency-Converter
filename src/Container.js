@@ -17,12 +17,12 @@ export default function Container() {
         updateData(prop, 0);
     }
 
-    function newFrom(prop) { // prop func to Currency.js
+    function newFrom(prop) { // prop func to Select.js
         console.log(`Parent received ${prop} as FROM from child`);
         updateData(prop, 1);
     }
 
-    function newTo(prop) { // prop func to Currency.js
+    function newTo(prop) { // prop func to Select.js
         console.log(`Parent received ${prop} as TO from child`);
         updateData(prop, 2);
     }
@@ -48,7 +48,7 @@ export default function Container() {
         setData(updatedProps);
     }
 
-    /* selectedCurrency global arr is populated with the current FROM and TO states. This assignment is handled by the getFromState and getToState prop functions which are called in useEffect hooks in the currency components. The hooks send the state values as props upon first render and each time the selection is altered/swapped. Global vairables intended so The SWAP function always has access to the currect component states and can update DATA state onClick */ 
+    /* selectedCurrency global arr is populated with the current FROM and TO states. This assignment is handled by the getFromState and getToState prop functions which are called in useEffect hooks in the currency components. The hooks send the state values as props upon first render and each time the selection is altered/swapped. Global variables intended so The SWAP function always has access to the currect component states and can update DATA state onClick */ 
     let selectedCurrency = [];
     let getFromState = (prop) => {
         selectedCurrency[0] = prop;

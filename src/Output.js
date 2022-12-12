@@ -1,3 +1,4 @@
+import { render } from '@testing-library/react';
 import React, { useState, useEffect } from 'react';
 import { currencies } from './Currencies';
 
@@ -35,6 +36,19 @@ export default function Output(props) {
     useEffect(() => {
         filterOutput(true)
     }, [amount])
+
+    
+    const [ renderCount, setRenderCount ] = useState(2); // count instead of bool due to strict mode
+    useEffect(() => {
+        const z = document.getElementsByClassName('result')[0];
+        setRenderCount(prev => prev + 1)
+        if (renderCount > 2) z.style.visibility = 'visible';
+    }, [result])
+
+    useEffect(() => {
+        const z = document.getElementsByClassName('result')[0];
+        z.style.visibility = 'hidden';
+    }, [amount, from, to])
 
     function filterOutput(fromSelected) {
 
