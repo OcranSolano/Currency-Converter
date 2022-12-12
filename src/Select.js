@@ -31,7 +31,7 @@ export function FromCurrency(props) {
                 <option value={name} key={name.toString()}>{name}</option>
                 ))}
             </select>
-            <label for='startcurrency'>From</label>
+            <label htmlFor='startcurrency'>From</label>
         </div>
     )
 }
@@ -63,7 +63,7 @@ export function ToCurrency(props) {
                 <option value={name} key={name.toString()}>{name}</option>
                 ))}
             </select>
-            <label for='endcurrency'>To</label>
+            <label htmlFor='endcurrency'>To</label>
         </div>
     )
 }
