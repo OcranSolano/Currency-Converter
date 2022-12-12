@@ -5,7 +5,6 @@ export default function Amount(props) {
 
     function update(e) { // onChange: updates local state
         console.log("New AMOUNT is: " + e.target.value);
-        console.log(e.target.value, typeof e.target.value)
         setAmount(e.target.value);
         props.update(e.target.value); // prop func (parent line 15)
     }
@@ -20,7 +19,7 @@ export default function Amount(props) {
                 min='0'
                 onChange={update}
                 required
-                /*onInput='validity.valid || (value="1");'*/ >
+                /* onInput='validity.valid || (value="1");' */ >
             </input>
             <label htmlFor='amount'>Amount</label> 
         </div>
