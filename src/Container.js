@@ -7,7 +7,7 @@ import { currencies } from './Currencies';
 
 export default function Container() {
 
-    let defaults = ['1', currencies[0].name, currencies[1].name, '']; // default values
+    let defaults = ['1', currencies[0].name, currencies[1].name, '', false]; // default values for AMOUHT, FROM, TO, RESULT
     const [ data, setData ] = useState(defaults); // dependencies for all components (props)
     
     console.log(`Current data: ${data}`)
@@ -32,6 +32,7 @@ export default function Container() {
         let newValue = prop;
         const updatedProps = [...data];
         updatedProps[x] = newValue;
+        updatedProps[4] = false;
         setData(updatedProps);
     }
 
@@ -46,6 +47,7 @@ export default function Container() {
         const nf = Intl.NumberFormat();
         const updatedProps = [...data];
         updatedProps[3] = nf.format(apiResult);
+        updatedProps[4] = true;
         setData(updatedProps);
     }
 
@@ -63,6 +65,7 @@ export default function Container() {
         let updatedProps = [...data];
         updatedProps[1] = selectedCurrency[1]; // FROM = TO
         updatedProps[2] = selectedCurrency[0]; // TO = FROM
+        updatedProps[4] = false;
         setData(updatedProps)
     }   
 

@@ -25,3 +25,5 @@ export default function Amount(props) {
         </div>
     )
 }
+
+// Format number in input element

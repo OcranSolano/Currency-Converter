@@ -104,3 +104,7 @@ span { /* for rial symbol in output */
 .two {
   height: 1.55em;
 }
+
+.result {
+  visibility: hidden;
+}
