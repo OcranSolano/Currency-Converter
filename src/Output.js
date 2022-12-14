@@ -8,7 +8,7 @@ export default function Output(props) {
     const amount = props.data[0];
     let from = props.data[1].slice(6); // name w/o acronym
     let to = props.data[2].slice(6); // name w/o acronym
-    let result = props.data[3];
+    const result = props.data[3];
     
     const [ fromSymbol, setFromSymbol ] = useState('$');
     const [ toSymbol, setToSymbol ] = useState('€');
@@ -38,24 +38,20 @@ export default function Output(props) {
         filterOutput(true)
     }, [amount])
 
-    
-    const [ renderCount, setRenderCount ] = useState(2); // count instead of bool due to strict mode
     useEffect(() => {
-        const z = document.getElementsByClassName('result')[0];
-        setRenderCount(prev => prev + 1)
-        if (renderCount > 2) z.style.opacity = 1;
-        // console.log('count: ' + renderCount)
-    }, [result])
-
-    useEffect(() => {
-        const z = document.getElementsByClassName('result')[0];
-        z.style.opacity = 0.5;
-
-        if(from === to) {
-            z.style.opacity = 1;
-            result = amount;
+        const z = document.getElementsByClassName('symbol-result')[0];
+        z.style.display = 'none';
+        if (from === to) {
+            z.style.display = 'block';
         }
     }, [amount, from, to])
+
+    const [ renderCount, setRenderCount ] = useState(2); // count instead of bool due to strict mode
+    useEffect(() => {
+        const z = document.getElementsByClassName('symbol-result')[0];
+        setRenderCount(prev => prev + 1)
+        if (renderCount > 2) z.style.display = 'initial';
+    }, [result])
 
     function filterOutput(fromSelected) {
 
@@ -94,14 +90,14 @@ export default function Output(props) {
 
     return (
         <div className='result'>
-            <span className='first'>
+            <span className='top'>
                 <img className='flag one' src={`https://flagcdn.com/${fromFlag}.svg`} alt=''></img>
                 <h6 className='output-1'><span>{fromSymbol}</span>{`${amount} ${output1} = `}</h6>
             </span>
             <br></br>
-            <span className='first'>
+            <span className='bottom'>
                 <img className='flag two' src={`https://flagcdn.com/${toFlag}.svg`} alt=''></img>
-                <h3 className='output-2'><span>{toSymbol}</span>{`${result} ${output2}`}</h3>
+                <h3 className='output-2'><span className='symbol-result'><span>{toSymbol}</span><span>{result}&nbsp;</span></span>{output2}</h3>
             </span>
         </div>
     )

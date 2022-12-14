@@ -16,8 +16,11 @@ export default function Convert(props) {
     const to = props.data[2].slice(0,3);
 
     // useEffect(() => {
-    //     if (props.data[1] === props.data[2] || amount === '0') {
-    //         props.result(amount); //STRING
+    //     if (amount.length === 0) {
+        //     alert('Please input AMOUNT to convert')
+        // } else if (props.data[1] === props.data[2] || amount === '0') {
+        //     props.result(amount); //STRING
+        //     console.log(amount.length)
     //     } else {
     //         fetch(`https://api.apilayer.com/exchangerates_data/convert?to=${to}&from=${from}&amount=${amount}`, requestOptions)
     //         /*.then(response => response.text())*/

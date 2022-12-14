@@ -84,7 +84,8 @@ span { /* for rial symbol in output */
   float: left;
 }
 
-.first {
+.top,
+.bottom {
   display: inline-flex;
 }
 

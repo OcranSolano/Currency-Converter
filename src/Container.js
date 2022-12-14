@@ -3,10 +3,11 @@ import Amount from './Amount';
 import { FromCurrency, ToCurrency } from './Select';
 import Convert from './Convert';
 import Output from './Output';
+import { currencies } from './Currencies';
 
 export default function Container() {
 
-    let defaults = ['1', 'USD — United States Dollar 🇺🇸', 'EUR — Euro 🇪🇺', 0]; // default values
+    let defaults = ['1', currencies[0].name, currencies[1].name, '']; // default values
     const [ data, setData ] = useState(defaults); // dependencies for all components (props)
     
     console.log(`Current data: ${data}`)
