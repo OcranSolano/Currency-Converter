@@ -44,11 +44,6 @@ export default function Output(props) {
         filterOutput(true)
     }, [amount])
 
-
-
-
-    
-
     useEffect(() => {
         const bottom = document.getElementsByClassName('bottom')[0];
         const symbol = document.getElementsByClassName('symbol-result')[0];
@@ -61,22 +56,7 @@ export default function Output(props) {
             symbol.style.display = 'block';
         }
         
-        console.log('enabled is ' + enabled)
-        
     }, [amount, from, to, enabled])
-
-    const [ renderCount, setRenderCount ] = useState(2); // count instead of bool due to strict mode
-    useEffect(() => {
-        const z = document.getElementsByClassName('symbol-result')[0];
-        console.log('now enabled is ' + enabled)
-    }, [result])
-
-
-
-
-
-
-
 
     function filterOutput(fromSelected) {
 
@@ -93,16 +73,15 @@ export default function Output(props) {
         
         let currency;
         let condition;
-        fromSelected ? condition = Number(amount) : condition = result;
+        fromSelected ? condition = Number(amount) : condition = result; // FIX ex. BRL
 
         if (condition !== 1) {
-            // currency = selectedCurrency.plurallize()
             if (regName && !plural) currency = regName + 's'; // alt output, no plural, ex. GBP
             if (plural) currency = plural; // alt plural, ex. BRL or PEN
             if (!regName && !plural) fromSelected ? currency = from.slice(0,-5) + 's': currency = to.slice(0,-5) + 's'; // all other currencies
         } else {
             if (regName && !plural) currency = regName;
-            if (plural && !regName) fromSelected ? currency = from : currency = to; // alt plural only, ex. BRL
+            if (plural && !regName) fromSelected ? currency = from.slice(0,-5) : currency = to; // alt plural only, ex. BRL FIX FIX
             if (plural && regName) fromSelected ? currency = regName : currency = regName; // alt output and alt plural, ex. PEN
             if (!regName && !plural) fromSelected ? currency = from.slice(0,-5) : currency = to.slice(0,-5); // all other currencies
         }
