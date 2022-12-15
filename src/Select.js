@@ -8,7 +8,7 @@ export function FromCurrency(props) {
     const [ fromCurrency, setFromCurrency ] = useState(props.data[1]);
 
     function selectionHandler(e) { // onChange: updates local state after new selection
-        console.log('New FROM currency: ' + e.target.value);
+        // console.log('New FROM currency: ' + e.target.value);
         setFromCurrency(e.target.value);
         props.update(e.target.value); // prop func (parent line 15)
     }
@@ -40,7 +40,7 @@ export function ToCurrency(props) {
     const [ toCurrency, setToCurrency ] = useState(props.data[2]);
 
     function selectionHandler(e) { // onChange: updates local state after new selection
-        console.log('New TO currency: ' + e.target.value);
+        // console.log('New TO currency: ' + e.target.value);
         setToCurrency(e.target.value);
         props.update(e.target.value); // prop func (parent line 15)
     }

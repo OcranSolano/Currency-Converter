@@ -38,7 +38,6 @@ export default function Convert(props) {
             alert('Please input AMOUNT to convert')
         } else if (props.data[1] === props.data[2] || amount === '0') {
             props.result(amount); //STRING
-            console.log(amount.length)
         } else {
             fetch(`https://api.apilayer.com/exchangerates_data/convert?to=${to}&from=${from}&amount=${amount}`, requestOptions)
             /*.then(response => response.text())*/

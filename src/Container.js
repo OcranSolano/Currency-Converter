@@ -7,7 +7,7 @@ import { currencies } from './Currencies';
 
 export default function Container() {
 
-    let defaults = ['1', currencies[0].name, currencies[1].name, '', false]; // default values for AMOUHT, FROM, TO, RESULT
+    let defaults = ['1', currencies[0].name, currencies[1].name, 1, false]; // default values for AMOUHT, FROM, TO, RESULT
     const [ data, setData ] = useState(defaults); // dependencies for all components (props)
     
     console.log(`Current data: ${data}`)

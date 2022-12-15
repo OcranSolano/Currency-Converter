@@ -8,7 +8,8 @@ export default function Output(props) {
     const amount = props.data[0];
     let from = props.data[1].slice(6); // name w/o acronym
     let to = props.data[2].slice(6); // name w/o acronym
-    const result = props.data[3];
+    let result = props.data[3];
+    console.log('RESULT VAR is ' + result)
     let enabled = props.data[4];
     
     const [ fromSymbol, setFromSymbol ] = useState('$');
@@ -59,7 +60,6 @@ export default function Output(props) {
     }, [amount, from, to, enabled])
 
     function filterOutput(fromSelected) {
-
         let selected;
 
         fromSelected ? selected = props.data[1] : selected = props.data[2];
@@ -74,6 +74,10 @@ export default function Output(props) {
         let currency;
         let condition;
         fromSelected ? condition = Number(amount) : condition = result; // FIX ex. BRL
+        if(to === from) condition = Number(amount);
+        console.log(fromSelected)
+        console.log(result)
+        console.log('CONDITION INTEGET: ' + condition)
 
         if (condition !== 1) {
             if (regName && !plural) currency = regName + 's'; // alt output, no plural, ex. GBP
@@ -89,7 +93,11 @@ export default function Output(props) {
         fromSelected ? setOutput1(currency) : setOutput2(currency);
         fromSelected ? setFromSymbol(symbol) : setToSymbol(symbol);
         fromSelected ? setFromFlag(flag) : setToFlag(flag);
-        
+
+        if(to === from) { // same output for both
+            setOutput1(currency)
+            setOutput2(currency)
+        }
     }
 
     return (
