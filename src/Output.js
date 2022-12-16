@@ -9,8 +9,9 @@ export default function Output(props) {
     let from = props.data[1].slice(6); // name w/o acronym
     let to = props.data[2].slice(6); // name w/o acronym
     let result = props.data[3];
-    console.log('RESULT VAR is ' + result)
+    // console.log('RESULT VAR is ' + result)
     let enabled = props.data[4];
+    let resultAfterAPI = result;
     
     const [ fromSymbol, setFromSymbol ] = useState('$');
     const [ toSymbol, setToSymbol ] = useState('€');
@@ -28,7 +29,9 @@ export default function Output(props) {
     useEffect(() => {
         const resultDiv = document.getElementsByClassName('result')[0];
         if(enabled) resultDiv.style.visibility = 'visible';
-    },[enabled])
+        resultAfterAPI = result; // new result value stored and used for condition when determining output-2
+        filterOutput(false) // necessary if FROM formatting condition (amount) is used. TO formatting condition must be api result
+    },[enabled, result])
     
     useEffect(() => { // when user selects new FROM or TO, conditionals are used to determine which selection was altered: if newly selected FROM or TO differs with the values saved in PREV states, the switch statement is called with the respective FROM or TO acronym and a boolean to semantically indicate which state to update. If no alt output for currency, update the output states by default with the FROM and TO values from props.
 
@@ -43,6 +46,8 @@ export default function Output(props) {
 
     useEffect(() => {
         filterOutput(true)
+        resultAfterAPI = 1; // reset to avoid new TO plural
+        filterOutput(false)
     }, [amount])
 
     useEffect(() => {
@@ -73,11 +78,11 @@ export default function Output(props) {
         
         let currency;
         let condition;
-        fromSelected ? condition = Number(amount) : condition = result; // FIX ex. BRL
+        fromSelected ? condition = Number(amount) : condition = resultAfterAPI; // FIX ex. BRL
         if(to === from) condition = Number(amount);
-        console.log(fromSelected)
-        console.log(result)
-        console.log('CONDITION INTEGET: ' + condition)
+        // console.log('FROMSELECTED: ' + fromSelected)
+        // console.log('CONDITION INTEGET: ' + condition)
+        // console.log('RESULT API: ' + resultAfterAPI, result)
 
         if (condition !== 1) {
             if (regName && !plural) currency = regName + 's'; // alt output, no plural, ex. GBP
@@ -85,7 +90,7 @@ export default function Output(props) {
             if (!regName && !plural) fromSelected ? currency = from.slice(0,-5) + 's': currency = to.slice(0,-5) + 's'; // all other currencies
         } else {
             if (regName && !plural) currency = regName;
-            if (plural && !regName) fromSelected ? currency = from.slice(0,-5) : currency = to; // alt plural only, ex. BRL FIX FIX
+            if (plural && !regName) fromSelected ? currency = from.slice(0,-5) : currency = to.slice(0,-5); // alt plural only, ex. BRL FIX FIX
             if (plural && regName) fromSelected ? currency = regName : currency = regName; // alt output and alt plural, ex. PEN
             if (!regName && !plural) fromSelected ? currency = from.slice(0,-5) : currency = to.slice(0,-5); // all other currencies
         }
@@ -98,6 +103,8 @@ export default function Output(props) {
             setOutput1(currency)
             setOutput2(currency)
         }
+
+        resultAfterAPI = 1; // reset to avoid new TO plural
     }
 
     return (

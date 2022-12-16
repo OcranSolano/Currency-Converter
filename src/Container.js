@@ -65,6 +65,7 @@ export default function Container() {
         let updatedProps = [...data];
         updatedProps[1] = selectedCurrency[1]; // FROM = TO
         updatedProps[2] = selectedCurrency[0]; // TO = FROM
+        updatedProps[3] = 1; // reset result, more important when using result as condition for TO instead of resultAfterAPI
         updatedProps[4] = false;
         setData(updatedProps)
     }   
