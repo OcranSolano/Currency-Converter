@@ -78,6 +78,7 @@ select { border: 1px solid #333; border-radius: 0.3em; }
 
 .btn {
   justify-self: end;
+  width: 50%;
 }
 
 span { /* for rial symbol in output */
@@ -107,4 +108,8 @@ span { /* for rial symbol in output */
 
 .result {
   visibility: hidden;
+}
+
+.spinner-border {
+  float: unset;
 }
