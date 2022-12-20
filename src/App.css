@@ -8,10 +8,18 @@ body {
   align-items: center;
   min-height: 100vh;
   text-align: center;
-  background-color: rgb(23, 84, 119); /* dark seagreen */
+  /*background-color: rgb(23, 84, 119); /* dark seagreen */
   /* font-family: 'Quantico', sans-serif; */
   font-family: 'Josefin Sans', sans-serif;
   font-size: unset;
+
+  background: linear-gradient(
+    to top,
+    rgb(245, 245, 245) 0%,
+    rgb(245, 245, 245) 50%,
+    rgb(23, 84, 119) 50%,
+    rgb(2, 0, 36) 150% /* 100% */
+  );
 }
 
 main {
@@ -26,6 +34,7 @@ h1 {
 
 .container {
   background-color: whitesmoke;
+  box-shadow: rgb(35 55 80 / 30%) 0px 6px 12px;
   border-radius: 0.5em;
   width: 65%;
   margin: 0 auto;
