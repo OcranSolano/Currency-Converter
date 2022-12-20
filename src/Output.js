@@ -1,5 +1,3 @@
-// import { render } from '@testing-library/react';
-import { render } from '@testing-library/react';
 import React, { useState, useEffect } from 'react';
 import { currencies } from './Currencies';
 
@@ -122,6 +120,6 @@ export default function Output(props) {
     )
 }
 
-// ADD A LOADING ICON WHILE WAITING FOR API CALL
+// ADD A LOADING ICON WHILE WAITING FOR API CALL ✅
 // CHECK THAT ACCENTS ARE USED CORRECTLY
 // Format AMOUNT in output-1

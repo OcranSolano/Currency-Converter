@@ -1,6 +1,4 @@
-import React, { useEffect } from 'react';
-
-import { useState } from "react";
+import React, { useEffect, useState } from 'react';
 
 let myHeaders = new Headers();
 myHeaders.append("apikey", "1IBq1WjxEI5NMiLbXVxXsNPNnEKj8Mp7");
