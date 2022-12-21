@@ -6,6 +6,7 @@ import { FromCurrency, ToCurrency } from './Select';
 import Convert from './Convert';
 import Output from './Output';
 import { currencies } from './Currencies';
+import Info from './info';
 
 export default function App() {
 
@@ -72,15 +73,24 @@ export default function App() {
     setData(updatedProps)
   }   
 
+  let acronym1 = data[1].slice(0,3);
+  let acronym2 = data[2].slice(0,3);
+
   return (
-    <div className="container">
-      <h1 className="title">currency converter</h1>
-      <Amount data={data} update={newAmount} />
-      <div className="material-symbols-outlined swap" onClick={swap}>swap_horiz</div>
-      <FromCurrency data={data} update={newFrom} getFromState={getFromState} />
-      <ToCurrency data={data} update={newTo} getToState={getToState} />
-      <Output data={data} />
-      <Convert data={data} result={result} />
-    </div>    
+    <>
+      <div className='heading'>
+        <h1>{data[0]} {acronym1} to {acronym2}</h1>
+        <p>React Currency Converter</p>
+      </div>
+      <div className="container">
+        <Amount data={data} update={newAmount} />
+        <div className="material-symbols-outlined swap" onClick={swap}>swap_horiz</div>
+        <FromCurrency data={data} update={newFrom} getFromState={getFromState} />
+        <ToCurrency data={data} update={newTo} getToState={getToState} />
+        <Output data={data} />
+        <Convert data={data} result={result} />
+        <Info />
+      </div>
+    </>
   )
 }

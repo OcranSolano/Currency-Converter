@@ -116,6 +116,8 @@ export default function Output(props) {
                 <img className='flag two' src={`https://flagcdn.com/${toFlag}.svg`} alt=''></img>
                 <h3 className='output-2'><span className='symbol-result'><span>{toSymbol}</span><span>{result}&nbsp;</span></span>{output2}</h3>
             </span>
+            <br></br>
+            <p></p>
         </div>
     )
 }
