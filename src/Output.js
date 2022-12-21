@@ -26,7 +26,7 @@ export default function Output(props) {
 
     useEffect(() => {
         const resultDiv = document.getElementsByClassName('result')[0];
-        if(enabled) resultDiv.style.visibility = 'visible';
+        if(enabled) resultDiv.style.display = 'flex';
         resultAfterAPI = result; // new result value stored and used for condition when determining output-2
         filterOutput(false) // necessary if FROM formatting condition (amount) is used. TO formatting condition must be api result
     },[enabled, result])
@@ -105,20 +105,30 @@ export default function Output(props) {
         resultAfterAPI = 1; // reset to avoid new TO plural
     }
 
+    let currentdate = new Date(); 
+    let month = currentdate.toLocaleString('default', { month: 'long' });
+    let datetime = `As of ${month} ${currentdate.getDate()}, ${currentdate.getFullYear()}, ${currentdate.getHours()}:${currentdate.getMinutes()}:${currentdate.getSeconds()}`
+
+
     return (
-        <div className='result'>
-            <span className='top'>
-                <img className='flag one' src={`https://flagcdn.com/${fromFlag}.svg`} alt=''></img>
-                <h6 className='output-1'><span>{fromSymbol}</span>{`${amount} ${output1} = `}</h6>
-            </span>
-            <br></br>
-            <span className='bottom'>
-                <img className='flag two' src={`https://flagcdn.com/${toFlag}.svg`} alt=''></img>
-                <h3 className='output-2'><span className='symbol-result'><span>{toSymbol}</span><span>{result}&nbsp;</span></span>{output2}</h3>
-            </span>
-            <br></br>
-            <p></p>
-        </div>
+        <>
+            <div className='result'>
+                <div className='top'>
+                    <img className='flag one' src={`https://flagcdn.com/${fromFlag}.svg`} alt=''></img>
+                    <h5 className='output-1'><span>{fromSymbol}</span>{`${amount} ${output1} = `}</h5>
+                </div>
+                <div className='bottom'>
+                    <img className='flag two' src={`https://flagcdn.com/${toFlag}.svg`} alt=''></img>
+                    <h3 className='output-2'><span className='symbol-result'><span>{toSymbol}</span><span>{result}&nbsp;</span></span>{output2}</h3>
+                </div>
+                <div className='single-units'>
+                    <p>1 {props.data[1].slice(0,3)} = x {props.data[2].slice(0,3)}</p>
+                    <p>1 {props.data[2].slice(0,3)} = x {props.data[1].slice(0,3)}</p>
+                </div>
+                <div><p className='datetime'>{datetime}</p></div>
+            </div>
+            
+        </>
     )
 }
 
