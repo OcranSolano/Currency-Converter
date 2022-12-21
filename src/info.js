@@ -6,7 +6,7 @@ export default function Info() {
         role="alert"
       >
         <svg
-          class="bi flex-shrink-0 me-2"
+          className="bi flex-shrink-0 me-2"
           width="15"
           height="15"
           role="img"
