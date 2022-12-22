@@ -32,6 +32,10 @@ export default function Output(props) {
         if(enabled) resultDiv.style.display = 'flex';
         resultAfterAPI = result; // new result value stored and used for condition when determining output-2
         filterOutput(false) // necessary if FROM formatting condition (amount) is used. TO formatting condition must be api result
+    
+        // const el = document.getElementById('collapseExample')
+        // enabled ? el.style.visibility = 'visible' : el.style.collapse;
+        // console.log(enabled)
     },[enabled, result])
     
     useEffect(() => { // when user selects new FROM or TO, conditionals are used to determine which selection was altered: if newly selected FROM or TO differs with the values saved in PREV states, the switch statement is called with the respective FROM or TO acronym and a boolean to semantically indicate which state to update. If no alt output for currency, update the output states by default with the FROM and TO values from props.
@@ -123,13 +127,12 @@ export default function Output(props) {
                     <img className='flag two' src={`https://flagcdn.com/${toFlag}.svg`} alt=''></img>
                     <h3 className='output-2'><span className='symbol-result'><span>{toSymbol}</span><span>{result}&nbsp;</span></span>{output2}</h3>
                 </div>
-                <div className='rates'>
+                <div className='rates collapse.show' id="collapseExample">
                     <p>1 {props.data[1].slice(0,3)} = {rate} {props.data[2].slice(0,3)}</p>
                     <p>1 {props.data[2].slice(0,3)} = {inverse} {props.data[1].slice(0,3)}</p>
                 </div>
                 <div><p className='datetime'>{datetime}</p></div>
             </div>
-            
         </>
     )
 }
