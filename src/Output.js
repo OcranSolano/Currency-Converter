@@ -29,7 +29,23 @@ export default function Output(props) {
 
     useEffect(() => {
         const resultDiv = document.getElementsByClassName('result')[0];
-        if(enabled) resultDiv.style.display = 'flex';
+        // const rates = document.getElementsByClassName('rates')[0]
+        const x = document.getElementsByClassName('container')[0];
+        const alert = document.getElementsByClassName('alert')[0];
+
+        if(enabled) {
+            x.style.height = '333.305px';
+
+            resultDiv.style.opacity = '1';
+            resultDiv.style.height = '100%';
+            alert.style.opacity = '1';
+            
+            //x.style.gridTemplateRows = '1fr auto 1fr';
+
+            
+            //rates.style.height = '100%';
+        }
+
         resultAfterAPI = result; // new result value stored and used for condition when determining output-2
         filterOutput(false) // necessary if FROM formatting condition (amount) is used. TO formatting condition must be api result
     

@@ -46,6 +46,9 @@ main {
   grid-row-gap: 15px;
   padding: 20px;
   align-items: center;
+  height: 173.781px;
+  max-height: 333.305px;
+  transition: height .35s;
 }
 
 .amount { grid-area: 1 / 1 / 2 / 2; }
@@ -122,9 +125,12 @@ span { /* for rial symbol in output */
 }
 
 .result {
+  background-color: aquamarine;
   display: flex;
-  display: none;
   flex-direction: column;
+  opacity: 0;
+  height: 0;
+  transition: height .35s ease 0.5s, opacity 1.5s ease 0.5s;
 }
 
 .spinner-border {
@@ -135,6 +141,12 @@ span { /* for rial symbol in output */
   padding: .5em;
   font-size: 12px;
   margin: 0;
+  display: unset;
+}
+
+.alert {
+  opacity: 0;
+  transition: opacity .35s ease 1.5s;
 }
 
 .rates,
@@ -142,6 +154,11 @@ span { /* for rial symbol in output */
   text-align: start;
   margin-bottom: 8px;
 }
+
+/* .rates {
+  height: 0;
+  
+} */
 
 .rates p {
   margin: 0;

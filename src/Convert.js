@@ -63,10 +63,10 @@ export default function Convert(props) {
         <button 
             type='button' 
             className='btn btn-primary btn-lg convert'
-            data-bs-toggle="collapse"
-            data-bs-target="#collapseExample"
-            aria-expanded="false"
-            aria-controls="collapseExample"
+            // data-bs-toggle="collapse"
+            // data-bs-target="#collapseExample"
+            // aria-expanded="false"
+            // aria-controls="collapseExample"
             onClick={execute}
             disabled={!loading ? false : true}>
                 {!loading ? 'Convert' : <span id='spinner' className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
