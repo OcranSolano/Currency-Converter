@@ -10,7 +10,7 @@ import Info from './info';
 
 export default function App() {
 
-  let defaults = ['1', currencies[0].name, currencies[1].name, 1, false]; // default values for AMOUHT, FROM, TO, RESULT
+  let defaults = ['1', currencies[0].name, currencies[1].name, 1, false, null]; // default values for AMOUHT, FROM, TO, RESULT
   const [ data, setData ] = useState(defaults); // dependencies for all components (props)
   
   console.log(`Current data: ${data}`)
@@ -47,10 +47,14 @@ export default function App() {
     // if FROM === TO covert prop to NUMBER. Else, access proper object key
     typeof prop === 'string' ? apiResult = Number(prop) : apiResult = prop.result;
 
+    let exchangeRate;
+
+    typeof prop === 'string' ? exchangeRate = 1 : exchangeRate = prop.info.rate;
     const nf = Intl.NumberFormat();
     const updatedProps = [...data];
     updatedProps[3] = nf.format(apiResult);
     updatedProps[4] = true;
+    updatedProps[5] = nf.format(exchangeRate);
     setData(updatedProps);
   }
 

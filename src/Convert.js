@@ -46,9 +46,9 @@ export default function Convert(props) {
             setLoading(true)
             
             fetch(`https://api.apilayer.com/exchangerates_data/convert?to=${to}&from=${from}&amount=${amount}`, requestOptions)
-            /*.then(response => response.text())*/
+            //.then(response => response.text())
             .then(response => response.json())
-            /*.then(result => console.log(result))*/
+            //.then(result => console.log(result))
             .then(result => props.result(result))
             .then(console.log('DONE'))
             .catch(error => alert('error', error));

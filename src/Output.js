@@ -11,6 +11,9 @@ export default function Output(props) {
     let enabled = props.data[4];
     let resultAfterAPI = result;
     
+    let rate = props.data[5];
+    let inverse = 1 / rate;
+
     const [ fromSymbol, setFromSymbol ] = useState('$');
     const [ toSymbol, setToSymbol ] = useState('€');
 
@@ -39,7 +42,7 @@ export default function Output(props) {
 
         setPrevFrom(from)
         setPrevTo(to)
-        
+
     }, [from, to])
 
     useEffect(() => {
@@ -107,8 +110,7 @@ export default function Output(props) {
 
     let currentdate = new Date(); 
     let month = currentdate.toLocaleString('default', { month: 'long' });
-    let datetime = `As of ${month} ${currentdate.getDate()}, ${currentdate.getFullYear()}, ${currentdate.getHours()}:${currentdate.getMinutes()}:${currentdate.getSeconds()}`
-
+    let datetime = `As of ${month} ${currentdate.getDate()}, ${currentdate.getFullYear()}, ${currentdate.getHours()}:${currentdate.getMinutes()}:${currentdate.getSeconds()} CST`
 
     return (
         <>
@@ -121,9 +123,9 @@ export default function Output(props) {
                     <img className='flag two' src={`https://flagcdn.com/${toFlag}.svg`} alt=''></img>
                     <h3 className='output-2'><span className='symbol-result'><span>{toSymbol}</span><span>{result}&nbsp;</span></span>{output2}</h3>
                 </div>
-                <div className='single-units'>
-                    <p>1 {props.data[1].slice(0,3)} = x {props.data[2].slice(0,3)}</p>
-                    <p>1 {props.data[2].slice(0,3)} = x {props.data[1].slice(0,3)}</p>
+                <div className='rates'>
+                    <p>1 {props.data[1].slice(0,3)} = {rate} {props.data[2].slice(0,3)}</p>
+                    <p>1 {props.data[2].slice(0,3)} = {inverse} {props.data[1].slice(0,3)}</p>
                 </div>
                 <div><p className='datetime'>{datetime}</p></div>
             </div>

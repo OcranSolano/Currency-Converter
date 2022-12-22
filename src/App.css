@@ -133,18 +133,24 @@ span { /* for rial symbol in output */
   margin: 0;
 }
 
-.single-units,
+.rates,
 .alert {
   text-align: start;
   margin-bottom: 8px;
 }
 
-.single-units p {
+.rates p {
   margin: 0;
+}
+
+.rates, 
+.datetime {
+  color: rgb(92, 102, 123);
 }
 
 .datetime {
   font-size: .8em;
   float: left;
   margin: 0;
+  opacity: 0.75;
 }
