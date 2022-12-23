@@ -84,6 +84,7 @@ export default function App() {
     <>
       <div className='heading'>
         <h1>{data[0]} {acronym1} to {acronym2}</h1>
+        <p>Select amount & currencies to convert</p>
       </div>
       <div className="container">
         <Amount data={data} update={newAmount} />

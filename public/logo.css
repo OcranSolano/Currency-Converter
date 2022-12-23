@@ -2,11 +2,15 @@
     position: absolute;
     top: 10px;
     left: 18.5%;
-    color: whitesmoke;
 }
 
 .logo-container p {
     margin: 8px 30px;
+}
+
+.logo-container a {
+    text-decoration: none;
+    color: whitesmoke;
 }
 
 .react-logo{
