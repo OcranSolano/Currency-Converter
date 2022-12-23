@@ -18,11 +18,11 @@ export default function Info() {
           </symbol>
         </svg>
         <div>
-          Conversion data comes from{" "}
+          Conversion data is provided by{" "}
           <a href="https://apilayer.com/marketplace/exchangerates_data-api">
             Exchange Rates Data API{" "}
           </a>
-          and flags from <a href="https://flagpedia.net/">Flagpedia</a>
+          & flags are sourced from <a href="https://flagpedia.net/">Flagpedia</a>
         </div>
       </div>
     </>
