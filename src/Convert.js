@@ -12,11 +12,13 @@ let requestOptions = {
 export default function Convert(props) {
 
     const [ loading, setLoading ] = useState(false);
+    const [ buttonText, setButtonText ] = useState('Convert');
     
     const amount = props.data[0];
     const from = props.data[1].slice(0,3);
     const to = props.data[2].slice(0,3);
     const result = props.data[3];
+    const enabled = props.data[4]
 
     // useEffect(() => {
     //     if (amount.length === 0) {
@@ -40,7 +42,10 @@ export default function Convert(props) {
 
         if (amount.length === 0) {
             alert('Please input AMOUNT to convert')
-        } else if (props.data[1] === props.data[2] || amount === '0') {
+            return
+        }
+
+        if (props.data[1] === props.data[2] || amount === '0') {
             props.result(amount); //STRING
         } else {
             setLoading(true)
@@ -53,11 +58,16 @@ export default function Convert(props) {
             .then(console.log('DONE'))
             .catch(error => alert('error', error));
         }
+        setButtonText('Refresh');
     }
 
     useEffect(() => {
         setLoading(false)
     }, [result])
+
+    useEffect(() => {
+        if(!enabled) setButtonText('Convert');
+    }, [enabled])
 
     return (
         <button 
@@ -65,7 +75,7 @@ export default function Convert(props) {
             className='btn btn-primary btn-lg convert'
             onClick={execute}
             disabled={!loading ? false : true}>
-                {!loading ? 'Convert' : <span id='spinner' className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
+                {!loading ? buttonText : <span id='spinner' className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
         </button>
     )
 }

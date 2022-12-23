@@ -10,7 +10,15 @@ import Info from './info';
 
 export default function App() {
 
-  let defaults = ['1', currencies[0].name, currencies[1].name, 1, false, null]; // default values for AMOUHT, FROM, TO, RESULT, ENABLED, RATE
+  let defaults = [
+    '1', // amount
+    currencies[0].name, // from
+    currencies[1].name, // to
+    1, // result
+    false, // enabled
+    null // exchange rate
+  ];
+  
   const [ data, setData ] = useState(defaults); // dependencies for all components (props)
   
   console.log(`Current data: ${data}`)
