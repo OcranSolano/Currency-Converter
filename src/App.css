@@ -125,12 +125,12 @@ span { /* for rial symbol in output */
 }
 
 .result {
-  background-color: aquamarine;
+  /* background-color: aquamarine; */
   display: flex;
   flex-direction: column;
   opacity: 0;
   height: 0;
-  transition: height .35s ease 0.5s, opacity 1.5s ease 0.5s;
+  transition: height .35s ease 0.25s, opacity 1.5s ease 0.25s;
 }
 
 .spinner-border {
@@ -146,7 +146,7 @@ span { /* for rial symbol in output */
 
 .alert {
   opacity: 0;
-  transition: opacity .35s ease 1.5s;
+  transition: opacity .35s ease .5s;
 }
 
 .rates,
