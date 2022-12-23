@@ -4,10 +4,13 @@ import { currencies } from './Currencies';
 export default function Output(props) {
 
     const amount = props.data[0];
+    const nf = Intl.NumberFormat();
+    let formattedAmount =  nf.format(amount);
+
     let from = props.data[1].slice(6); // name w/o acronym
     let to = props.data[2].slice(6); // name w/o acronym
     let result = props.data[3];
-    // console.log('RESULT VAR is ' + result)
+
     let enabled = props.data[4];
     let resultAfterAPI = result;
     
@@ -127,7 +130,7 @@ export default function Output(props) {
             <div className='result'>
                 <div className='top'>
                     <img className='flag one' src={`https://flagcdn.com/${fromFlag}.svg`} alt=''></img>
-                    <h5 className='output-1'><span>{fromSymbol}</span>{`${amount} ${output1} = `}</h5>
+                    <h5 className='output-1'><span>{fromSymbol}</span>{`${formattedAmount} ${output1} = `}</h5>
                 </div>
                 <div className='bottom'>
                     <img className='flag two' src={`https://flagcdn.com/${toFlag}.svg`} alt=''></img>
@@ -145,4 +148,4 @@ export default function Output(props) {
 
 // ADD A LOADING ICON WHILE WAITING FOR API CALL ✅
 // CHECK THAT ACCENTS ARE USED CORRECTLY
-// Format AMOUNT in output-1
+// Format AMOUNT in output-1 ✅

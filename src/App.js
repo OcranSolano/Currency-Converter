@@ -83,7 +83,7 @@ export default function App() {
   return (
     <>
       <div className='heading'>
-        <h1>{data[0]} {acronym1} to {acronym2}</h1>
+        <h1>{Intl.NumberFormat().format(data[0])} {acronym1} to {acronym2}</h1>
         <p>Select amount & currencies to convert</p>
       </div>
       <div className="container">
