@@ -11,6 +11,7 @@ let requestOptions = {
 
 export default function Convert(props) {
 
+    const [ firstClick, setFirsClick ] = useState(true);
     const [ loading, setLoading ] = useState(false);
     const [ buttonText, setButtonText ] = useState('Convert');
     
@@ -49,7 +50,7 @@ export default function Convert(props) {
             props.result(amount); //STRING
         } else {
             setLoading(true)
-            
+
             fetch(`https://api.apilayer.com/exchangerates_data/convert?to=${to}&from=${from}&amount=${amount}`, requestOptions)
             //.then(response => response.text())
             .then(response => response.json())
@@ -58,7 +59,16 @@ export default function Convert(props) {
             .then(console.log('DONE'))
             .catch(error => alert('error', error));
         }
+        
         setButtonText('Refresh');
+        const btn = document.getElementsByClassName('btn')[0];
+        if(firstClick) {
+            btn.style.opacity = 0;
+            setTimeout(function () {
+                btn.style.opacity = 1;
+            }, 350)
+        }
+        setFirsClick(false);
     }
 
     useEffect(() => {

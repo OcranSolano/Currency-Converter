@@ -57,7 +57,7 @@ export default function App() {
 
     let exchangeRate;
 
-    typeof prop === 'string' ? exchangeRate = 1 : exchangeRate = prop.info.rate;
+    typeof prop === 'string' ? exchangeRate = 1 : exchangeRate = prop.info.rate; // amount is left as string
     const nf = Intl.NumberFormat();
     const updatedProps = [...data];
     updatedProps[3] = nf.format(apiResult);

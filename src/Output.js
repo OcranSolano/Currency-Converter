@@ -31,21 +31,35 @@ export default function Output(props) {
     const [ prevTo, setPrevTo ] = useState(to);
 
     useEffect(() => {
+        resultAfterAPI = result; // new result value stored and used for condition when determining output-2
+        filterOutput(false) // necessary if FROM formatting condition (amount) is used. TO formatting condition must be api result
+
         const resultDiv = document.getElementsByClassName('result')[0];
         // const rates = document.getElementsByClassName('rates')[0]
-        const x = document.getElementsByClassName('container')[0];
+        const container = document.getElementsByClassName('container')[0];
         const alert = document.getElementsByClassName('alert')[0];
 
         if(enabled) {
-            x.style.height = '333.305px';
+            container.style.height = '333.305px';
             resultDiv.style.opacity = '1';
             resultDiv.style.height = '100%';
             alert.style.opacity = '1';
         }
+        
+    }, [enabled, result])
 
-        resultAfterAPI = result; // new result value stored and used for condition when determining output-2
-        filterOutput(false) // necessary if FROM formatting condition (amount) is used. TO formatting condition must be api result
-    },[enabled, result])
+    // useEffect(() => {
+    //     //console.log(result, resultAfterAPI)
+    //     if(result === resultAfterAPI) {
+    //         console.log('same')
+    //         const datetime = document.getElementsByClassName('datetime-2')[0];
+        
+    //         datetime.style.color = 'rgb(59, 203, 133)';
+    //         setTimeout(function () {
+    //             datetime.style.color = 'rgb(92, 102, 123)';
+    //         }, 350)
+    //     }
+    // });
     
     useEffect(() => { // when user selects new FROM or TO, conditionals are used to determine which selection was altered: if newly selected FROM or TO differs with the values saved in PREV states, the switch statement is called with the respective FROM or TO acronym and a boolean to semantically indicate which state to update. If no alt output for currency, update the output states by default with the FROM and TO values from props.
 
@@ -123,7 +137,10 @@ export default function Output(props) {
 
     let currentdate = new Date(); 
     let month = currentdate.toLocaleString('default', { month: 'long' });
-    let datetime = `As of ${month} ${currentdate.getDate()}, ${currentdate.getFullYear()}, ${currentdate.getHours()}:${currentdate.getMinutes()}:${currentdate.getSeconds()} CST`
+    let datetime = `${month} 
+            ${currentdate.getDate()}, 
+            ${currentdate.getFullYear()}, 
+            ${currentdate.getHours()}:${currentdate.getMinutes()}:${currentdate.getSeconds()} CST`
 
     return (
         <>
@@ -140,7 +157,7 @@ export default function Output(props) {
                     <p>1 {props.data[1].slice(0,3)} = {rate} {props.data[2].slice(0,3)}</p>
                     <p>1 {props.data[2].slice(0,3)} = {inverse} {props.data[1].slice(0,3)}</p>
                 </div>
-                <div><p className='datetime'>{datetime}</p></div>
+                <div><span className='datetime-1'>As of&nbsp;</span><span className='datetime-2'>{datetime}</span></div>
             </div>
         </>
     )

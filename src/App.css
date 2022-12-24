@@ -165,13 +165,17 @@ span { /* for rial symbol in output */
 }
 
 .rates, 
-.datetime {
+.datetime-1
+.datetime-2 {
   color: rgb(92, 102, 123);
 }
 
-.datetime {
+.datetime-1,
+.datetime-2 {
   font-size: .8em;
-  float: left;
   margin: 0;
   opacity: 0.75;
+  /* color:rgb(59, 203, 133); */
+  color: rgb(92, 102, 123);
+  transition: color .35s ease-in 0s;
 }
