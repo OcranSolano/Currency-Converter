@@ -155,10 +155,12 @@ span { /* for rial symbol in output */
   margin-bottom: 8px;
 }
 
-/* .rates {
+.rates {
   height: 0;
-  
-} */
+  height: 100%;
+  opacity: 1;
+  transition: width .35s, opacity .35s;
+}
 
 .rates p {
   margin: 0;

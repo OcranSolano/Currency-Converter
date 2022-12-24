@@ -5,7 +5,7 @@ export default function Output(props) {
 
     const amount = props.data[0];
     const nf = Intl.NumberFormat();
-    let formattedAmount =  nf.format(amount);
+    let formattedAmount = nf.format(amount);
 
     let from = props.data[1].slice(6); // name w/o acronym
     let to = props.data[2].slice(6); // name w/o acronym
@@ -47,19 +47,6 @@ export default function Output(props) {
         }
         
     }, [enabled, result])
-
-    // useEffect(() => {
-    //     //console.log(result, resultAfterAPI)
-    //     if(result === resultAfterAPI) {
-    //         console.log('same')
-    //         const datetime = document.getElementsByClassName('datetime-2')[0];
-        
-    //         datetime.style.color = 'rgb(59, 203, 133)';
-    //         setTimeout(function () {
-    //             datetime.style.color = 'rgb(92, 102, 123)';
-    //         }, 350)
-    //     }
-    // });
     
     useEffect(() => { // when user selects new FROM or TO, conditionals are used to determine which selection was altered: if newly selected FROM or TO differs with the values saved in PREV states, the switch statement is called with the respective FROM or TO acronym and a boolean to semantically indicate which state to update. If no alt output for currency, update the output states by default with the FROM and TO values from props.
 
@@ -81,6 +68,8 @@ export default function Output(props) {
     useEffect(() => {
         const bottom = document.getElementsByClassName('bottom')[0];
         const symbol = document.getElementsByClassName('symbol-result')[0];
+        const datetime = document.getElementsByClassName('datetime-2')[0];
+        const rates = document.getElementsByClassName('rates')[0]
 
         if(!enabled) {
             bottom.style.opacity = 0.3;
@@ -88,6 +77,19 @@ export default function Output(props) {
         } else {
             bottom.style.opacity = 1;
             symbol.style.display = 'block';
+        }
+
+        if(to === from) { // for same TO and FROM
+
+            datetime.style.color = 'rgb(59, 203, 133)';
+            setTimeout(function () {
+                datetime.style.color = 'rgb(92, 102, 123)';
+            }, 350)
+
+            bottom.style.opacity = 1;
+            symbol.style.display = 'block';
+            rates.style.height = '0';
+            rates.style.opacity = 0;
         }
         
     }, [amount, from, to, enabled])
@@ -153,7 +155,7 @@ export default function Output(props) {
                     <img className='flag two' src={`https://flagcdn.com/${toFlag}.svg`} alt=''></img>
                     <h3 className='output-2'><span className='symbol-result'><span>{toSymbol}</span><span>{result}&nbsp;</span></span>{output2}</h3>
                 </div>
-                <div className='rates collapse.show' id="collapseExample">
+                <div className='rates'>
                     <p>1 {props.data[1].slice(0,3)} = {rate} {props.data[2].slice(0,3)}</p>
                     <p>1 {props.data[2].slice(0,3)} = {inverse} {props.data[1].slice(0,3)}</p>
                 </div>

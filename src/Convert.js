@@ -19,7 +19,7 @@ export default function Convert(props) {
     const from = props.data[1].slice(0,3);
     const to = props.data[2].slice(0,3);
     const result = props.data[3];
-    const enabled = props.data[4]
+    const enabled = props.data[4];
 
     // useEffect(() => {
     //     if (amount.length === 0) {
@@ -40,7 +40,6 @@ export default function Convert(props) {
     // },[amount, from, to])
 
     function execute() {
-
         if (amount.length === 0) {
             alert('Please input AMOUNT to convert')
             return
@@ -59,7 +58,7 @@ export default function Convert(props) {
             .then(console.log('DONE'))
             .catch(error => alert('error', error));
         }
-        
+
         setButtonText('Refresh');
         const btn = document.getElementsByClassName('btn')[0];
         if(firstClick) {
