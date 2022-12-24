@@ -153,7 +153,7 @@ export default function Output(props) {
                 </div>
                 <div className='bottom'>
                     <img className='flag two' src={`https://flagcdn.com/${toFlag}.svg`} alt=''></img>
-                    <h3 className='output-2'><span className='symbol-result'><span>{toSymbol}</span><span>{result}&nbsp;</span></span>{output2}</h3>
+                    <h3 className='output-2'><span className='symbol-result'><span>{toSymbol}</span><span>{to === from ? formattedAmount : result}&nbsp;</span></span>{output2}</h3>
                 </div>
                 <div className='rates'>
                     <p>1 {props.data[1].slice(0,3)} = {rate} {props.data[2].slice(0,3)}</p>

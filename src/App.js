@@ -43,7 +43,8 @@ export default function App() {
     let newValue = prop;
     const updatedProps = [...data];
     updatedProps[x] = newValue;
-    if(data[1] == data[2] && x === 0) updatedProps[3] = prop; 
+    if(data[1] === data[2] && x === 0) updatedProps[3] = prop;
+    console.log(prop, typeof prop)
     updatedProps[4] = false;
     setData(updatedProps);
   }

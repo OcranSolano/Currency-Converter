@@ -14,6 +14,7 @@ export default function Convert(props) {
     const [ firstClick, setFirsClick ] = useState(true);
     const [ loading, setLoading ] = useState(false);
     const [ buttonText, setButtonText ] = useState('Convert');
+    const [ bool, setBool ] = useState(false);
     
     const amount = props.data[0];
     const from = props.data[1].slice(0,3);
@@ -77,6 +78,12 @@ export default function Convert(props) {
     useEffect(() => {
         if(!enabled) setButtonText('Convert');
     }, [enabled])
+
+    useEffect(() => {
+        if(from === to || !loading) {
+            setBool(true)
+        }
+    })
 
     return (
         <button 
