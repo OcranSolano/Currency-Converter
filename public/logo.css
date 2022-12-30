@@ -19,7 +19,7 @@
     border: 2px solid #00d8ff;
 
     animation-name:rotate;
-    animation-duration: 5s;
+    animation-duration: 10s; /* 5s */
     animation-iteration-count: infinite;
     animation-timing-function: linear;
 

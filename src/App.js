@@ -14,7 +14,7 @@ export default function App() {
     '1', // amount
     currencies[0].name, // from
     currencies[1].name, // to
-    1, // result
+    null, // result
     false, // enabled
     null // exchange rate
   ];
@@ -64,7 +64,7 @@ export default function App() {
     const updatedProps = [...data];
     updatedProps[3] = nf.format(apiResult);
     updatedProps[4] = true;
-    updatedProps[5] = nf.format(exchangeRate);
+    updatedProps[5] = nf.format(exchangeRate); // is format needed?
     setData(updatedProps);
   }
 
