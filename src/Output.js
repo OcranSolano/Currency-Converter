@@ -73,6 +73,7 @@ export default function Output(props) {
         if(!enabled) {
             bottom.style.opacity = 0.3;
             symbol.style.display = 'none';
+            rates.style.height = '48px';
             rates.style.opacity = .3;
         } else {
             bottom.style.opacity = 1;
