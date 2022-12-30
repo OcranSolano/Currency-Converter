@@ -18,7 +18,7 @@ export default function Info() {
           </symbol>
         </svg>
         <div>
-          Conversion data is provided by{" "}
+          Conversion data is sourced from the{" "}
           <a href="https://apilayer.com/marketplace/exchangerates_data-api" target="_blank">
             Exchange Rates Data API{" "}
           </a>

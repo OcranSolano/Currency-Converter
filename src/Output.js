@@ -35,7 +35,6 @@ export default function Output(props) {
         filterOutput(false) // necessary if FROM formatting condition (amount) is used. TO formatting condition must be api result
 
         const resultDiv = document.getElementsByClassName('result')[0];
-        // const rates = document.getElementsByClassName('rates')[0]
         const container = document.getElementsByClassName('container')[0];
         const alert = document.getElementsByClassName('alert')[0];
 
@@ -74,9 +73,12 @@ export default function Output(props) {
         if(!enabled) {
             bottom.style.opacity = 0.3;
             symbol.style.display = 'none';
+            rates.style.opacity = .3;
         } else {
             bottom.style.opacity = 1;
             symbol.style.display = 'block';
+            rates.style.height = '48px';
+            rates.style.opacity = 1;
         }
 
         if(to === from) { // for same TO and FROM
@@ -156,8 +158,8 @@ export default function Output(props) {
                     <h3 className='output-2'><span className='symbol-result'><span>{toSymbol}</span><span>{to === from ? formattedAmount : result}&nbsp;</span></span>{output2}</h3>
                 </div>
                 <div className='rates'>
-                    <p>1 {props.data[1].slice(0,3)} = {rate} {props.data[2].slice(0,3)}</p>
-                    <p>1 {props.data[2].slice(0,3)} = {inverse} {props.data[1].slice(0,3)}</p>
+                    <p>1 {props.data[1].slice(0,3)} = {enabled ? rate : ''} {props.data[2].slice(0,3)}</p>
+                    <p>1 {props.data[2].slice(0,3)} = {enabled ? inverse : ''} {props.data[1].slice(0,3)}</p>
                 </div>
                 <div><span className='datetime-1'>As of&nbsp;</span><span className='datetime-2'>{datetime}</span></div>
             </div>
