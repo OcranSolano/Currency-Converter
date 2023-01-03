@@ -11,19 +11,21 @@ import Info from './info';
 export default function App() {
 
   let defaults = [
-    '1', // amount
-    currencies[0].name, // from
-    currencies[1].name, // to
-    null, // result
-    false, // enabled
-    null // exchange rate
+    '1', // amount [0]
+    currencies[0].name, // from [1]
+    currencies[1].name, // to [2]
+    null, // result [3]
+    false, // enabled [4]
+    null // exchange rate [5]
   ];
   
   const [ data, setData ] = useState(defaults); // dependencies for all components (props)
   
   console.log(`Current data: ${data}`)
 
-  /* each NEW function is passed the new value as a prop from the onChange event handler on their respective component. The prop and corresponding DATA index are passed to the updateData function. In it, the prop is saved to a local var, which is then used to update the DATA state indirectly (state arr is duplicated locally using the spread operator. Value at appropriate index is updated before consolidating with state setter */
+  // INPUTS
+  // each 'new' function is propped a value via onChange handlers in input components. updateData() is called with value and index as params. In it, the value is saved locally, and then used to update the DATA state indirectly 
+
   function newAmount(prop) { // prop func to Amount.js
     console.log(`Parent received ${prop} as AMOUNT from child`);
     updateData(prop, 0);
@@ -41,34 +43,40 @@ export default function App() {
 
   function updateData(prop, x) { // passed new value and index for DATA state arr
     let newValue = prop;
+
     const updatedProps = [...data];
     updatedProps[x] = newValue;
-    if(data[1] === data[2] && x === 0) updatedProps[3] = prop;
-    console.log(prop, typeof prop)
-    updatedProps[4] = false;
+
+    if(data[1] === data[2] && x === 0) updatedProps[3] = prop; // result [3]
+    updatedProps[4] = false; // !enable [4]
+
     setData(updatedProps);
   }
 
-  /* API fetch is not used when FROM === TO. Instead, AMOUNT returned from Convert thru this prop func is used for output. As an input ele, AMOUNT is of type STRING and must be converted to a NUMBER prior to updating DATA state and passing to the OUTPUT component */
+  // RESULT
+  // API fetch not used when from = to. Instead, AMOUNT is used as result for output. As an input ele, AMOUNT is of type STRING and must be converted to a NUMBER prior to updating DATA state and passing to the OUTPUT component
+
   function result(prop) { // prop func to Convert.js
     console.log(`Parent received ${prop} as RESULT from child`);
     
     let apiResult;
-    // if FROM === TO covert prop to NUMBER. Else, access proper object key
-    typeof prop === 'string' ? apiResult = Number(prop) : apiResult = prop.result;
+    typeof prop === 'string' ? apiResult = Number(prop) : apiResult = prop.result; // convert to string if from = to
 
     let exchangeRate;
+    typeof prop === 'string' ? exchangeRate = 1 : exchangeRate = prop.info.rate; // amount is a string if from = to
 
-    typeof prop === 'string' ? exchangeRate = 1 : exchangeRate = prop.info.rate; // amount is left as string
     const nf = Intl.NumberFormat();
     const updatedProps = [...data];
-    updatedProps[3] = nf.format(apiResult);
-    updatedProps[4] = true;
-    updatedProps[5] = exchangeRate; // is format needed?
+    updatedProps[3] = nf.format(apiResult); // result [3]
+    updatedProps[4] = true; // enabled [4]
+    updatedProps[5] = exchangeRate;
+
     setData(updatedProps);
   }
 
-  /* selectedCurrency global arr is populated with the current FROM and TO states. This assignment is handled by the getFromState and getToState prop functions which are called in useEffect hooks in the currency components. The hooks send the state values as props upon first render and each time the selection is altered/swapped. Global variables intended so The SWAP function always has access to the currect component states and can update DATA state onClick */ 
+  // SWAP
+  // selectedCurrency global arr is populated with current FROM and TO states. This assignment is handled by the getFromState and getToState prop functions which are called in useEffect hooks in the currency components. The hooks send the state values as props upon first render and each time the selection is altered/swapped. Global variables intended so The SWAP function always has access to the currect component states and can update DATA state onClick
+
   let selectedCurrency = [];
   let getFromState = (prop) => {
     selectedCurrency[0] = prop;
@@ -78,14 +86,16 @@ export default function App() {
     selectedCurrency[1] = prop;
   }
 
-  function swap() { // onClick: swap FROM and TO in DATA, which updates currency components
+  function swap() { // onClick: swap FROM and TO
     let updatedProps = [...data];
     updatedProps[1] = selectedCurrency[1]; // FROM = TO
     updatedProps[2] = selectedCurrency[0]; // TO = FROM
-    updatedProps[3] = 1; // reset result, more important when using result as condition for TO instead of resultAfterAPI
-    updatedProps[4] = false;
+    updatedProps[3] = 1; // reset result [3]. Important when using result as condition in Output.js for TO instead of resultAfterAPI
+    updatedProps[4] = false; // !enabled [4]
     setData(updatedProps)
   }   
+
+  // PAGE HEADER
 
   let acronym1 = data[1].slice(0,3);
   let acronym2 = data[2].slice(0,3);

@@ -59,7 +59,7 @@ export default function Convert(props) {
         setLoading(true)
         
         if (props.data[1] === props.data[2] || amount === '0') {
-            props.result(amount); //STRING
+            props.result(amount); // string
             setTimeout(() => {
                 setLoading(false);
             }, 500)

@@ -6,7 +6,7 @@ export default function Amount(props) {
     function update(e) { // onChange: updates local state
         // console.log("New AMOUNT is: " + e.target.value);
         setAmount(e.target.value);
-        props.update(e.target.value); // prop func (parent line 15)
+        props.update(e.target.value); // App prop func
     }
 
     return (

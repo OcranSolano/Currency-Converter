@@ -47,24 +47,27 @@ export default function Output(props) {
         
     }, [enabled, result])
     
-    useEffect(() => { // when user selects new FROM or TO, conditionals are used to determine which selection was altered: if newly selected FROM or TO differs with the values saved in PREV states, the switch statement is called with the respective FROM or TO acronym and a boolean to semantically indicate which state to update. If no alt output for currency, update the output states by default with the FROM and TO values from props.
+    useEffect(() => { // When from/to selected, conditionals are used to determine which selection was altered: if new selection differs from values saved in PREV states, the filter func is called with a bool to semantically indicate which state to update.
+
+        resultAfterAPI = 1; // reset to avoid new TO plural
 
         // console.log(`PREV is ${prev}, FROM is ${from}`)
-        if (prevFrom !== from) filterOutput(true) // FROM has changed
-        if (prevTo !== to) filterOutput(false) // TO has changed
+        if (prevFrom !== from) filterOutput(true) // FROM changed
+        if (prevTo !== to) filterOutput(false) // TO changed
 
+        // Prevs updated with new selections after outputs have been determined, to work for next selection change
         setPrevFrom(from)
         setPrevTo(to)
 
     }, [from, to])
 
-    useEffect(() => {
+    useEffect(() => { // filter output for both to and from
         filterOutput(true)
         resultAfterAPI = 1; // reset to avoid new TO plural
         filterOutput(false)
     }, [amount])
 
-    useEffect(() => {
+    useEffect(() => { // CSS transitions
         const bottom = document.getElementsByClassName('bottom')[0];
         const symbol = document.getElementsByClassName('symbol-result')[0];
         const datetime = document.getElementsByClassName('datetime-2')[0];
@@ -115,7 +118,7 @@ export default function Output(props) {
         if(to === from) condition = Number(amount);
         // console.log('FROMSELECTED: ' + fromSelected)
         // console.log('CONDITION INTEGET: ' + condition)
-        // console.log('RESULT API: ' + resultAfterAPI, result)
+        console.log('RESULT API: ' + resultAfterAPI, result)
 
         if (condition !== 1) {
             if (regName && !plural) currency = regName + 's'; // alt output, no plural, ex. GBP

@@ -86,7 +86,7 @@ export const currencies = [
   { name: 'BTN — Bhutanese Ngultrum 🇧🇹',
     symbol: 'Nu.', flag: 'bt'
   },
-  { name: 'BWP — Botswanan Pula🇧🇼', // alt plural
+  { name: 'BWP — Botswanan Pula 🇧🇼', // alt plural
     plural: 'Botswanan Pule', symbol: 'P', flag: 'bw'
   },
   { name: 'BYN — (New) Belarusian Ruble 🇧🇾',
