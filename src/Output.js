@@ -159,8 +159,8 @@ export default function Output(props) {
                     <h3 className='output-2'><span className='symbol-result'><span>{toSymbol}</span><span>{to === from ? formattedAmount : result}&nbsp;</span></span>{output2}</h3>
                 </div>
                 <div className='rates'>
-                    <p>1 {props.data[1].slice(0,3)} = {enabled ? rate : ''} {props.data[2].slice(0,3)}</p>
-                    <p>1 {props.data[2].slice(0,3)} = {enabled ? inverse : ''} {props.data[1].slice(0,3)}</p>
+                    <p>1 {props.data[1].slice(0,3)} = {enabled ? nf.format(rate) : ''} {props.data[2].slice(0,3)}</p>
+                    <p>1 {props.data[2].slice(0,3)} = {enabled ? nf.format(inverse) : ''} {props.data[1].slice(0,3)}</p>
                 </div>
                 <div><span className='datetime-1'>As of&nbsp;</span><span className='datetime-2'>{datetime}</span></div>
             </div>

@@ -64,7 +64,7 @@ export default function App() {
     const updatedProps = [...data];
     updatedProps[3] = nf.format(apiResult);
     updatedProps[4] = true;
-    updatedProps[5] = nf.format(exchangeRate); // is format needed?
+    updatedProps[5] = exchangeRate; // is format needed?
     setData(updatedProps);
   }
 
