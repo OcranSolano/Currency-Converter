@@ -81,12 +81,12 @@ export default function Convert(props) {
 
             
             bottom.style.opacity = 0.3;
-            rates.style.opacity = 0.3;
+            to === from ? rates.style.opacity = 0 : rates.style.opacity = 0.3;
             
             setTimeout(() => {
                 setLoading(false);
                 bottom.style.opacity = 1;
-                rates.style.opacity = 1;
+                to === from ? rates.style.opacity = 0 : rates.style.opacity = 1;
                 datetime.style.color = 'rgb(59, 203, 133)';
                 setTimeout(function () {
                     datetime.style.color = 'rgb(92, 102, 123)';

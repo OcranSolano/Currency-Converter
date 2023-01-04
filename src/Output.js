@@ -29,23 +29,6 @@ export default function Output(props) {
     // stores FROM and TO for useEffect comparison. State setters used to same hook to store new values for future use
     const [ prevFrom, setPrevFrom ] = useState(from);
     const [ prevTo, setPrevTo ] = useState(to);
-
-    useEffect(() => {
-        resultAfterAPI = result; // new result value stored and used for condition when determining output-2
-        filterOutput(false) // necessary if FROM formatting condition (amount) is used. TO formatting condition must be api result
-
-        const resultDiv = document.getElementsByClassName('result')[0];
-        const container = document.getElementsByClassName('container')[0];
-        const alert = document.getElementsByClassName('alert')[0];
-
-        if(enabled) {
-            container.style.height = '333.305px';
-            resultDiv.style.opacity = '1';
-            resultDiv.style.height = '100%';
-            alert.style.opacity = '1';
-        }
-        
-    }, [enabled, result])
     
     useEffect(() => { // When from/to selected, conditionals are used to determine which selection was altered: if new selection differs from values saved in PREV states, the filter func is called with a bool to semantically indicate which state to update.
 
@@ -66,6 +49,23 @@ export default function Output(props) {
         resultAfterAPI = 1; // reset to avoid new TO plural
         filterOutput(false)
     }, [amount])
+
+    useEffect(() => {
+        resultAfterAPI = result; // new result value stored and used for condition when determining output-2
+        filterOutput(false) // necessary if FROM formatting condition (amount) is used. TO formatting condition must be api result
+
+        const resultDiv = document.getElementsByClassName('result')[0];
+        const container = document.getElementsByClassName('container')[0];
+        const alert = document.getElementsByClassName('alert')[0];
+
+        if(enabled) {
+            container.style.height = '333.305px';
+            resultDiv.style.opacity = '1';
+            resultDiv.style.height = '100%';
+            alert.style.opacity = '1';
+        }
+        
+    }, [enabled, result])
 
     useEffect(() => { // CSS transitions
         const bottom = document.getElementsByClassName('bottom')[0];
