@@ -24,8 +24,8 @@ export default function Output(props) {
     const [ toFlag, setToFlag ] = useState(currencies[1].flag);
 
     // states are needed for render as useEffect runs afterward, causing full names to display (state setters used in switch logic to render alt outputs)
-    const [ output1, setOutput1 ] = useState(from.slice(0,-5));
-    const [ output2, setOutput2 ] = useState(to.slice(0,-5));
+    const [ output1, setOutput1 ] = useState(from);
+    const [ output2, setOutput2 ] = useState(to);
     // stores FROM and TO for useEffect comparison. State setters used to same hook to store new values for future use
     const [ prevFrom, setPrevFrom ] = useState(from);
     const [ prevTo, setPrevTo ] = useState(to);
@@ -123,12 +123,12 @@ export default function Output(props) {
         if (condition !== 1) {
             if (regName && !plural) currency = regName + 's'; // alt output, no plural, ex. GBP
             if (plural) currency = plural; // alt plural, ex. BRL or PEN
-            if (!regName && !plural) fromSelected ? currency = from.slice(0,-5) + 's': currency = to.slice(0,-5) + 's'; // all other currencies
+            if (!regName && !plural) fromSelected ? currency = from + 's': currency = to + 's'; // all other currencies
         } else {
             if (regName && !plural) currency = regName;
-            if (plural && !regName) fromSelected ? currency = from.slice(0,-5) : currency = to.slice(0,-5); // alt plural only, ex. BRL FIX FIX
+            if (plural && !regName) fromSelected ? currency = from : currency = to; // alt plural only, ex. BRL FIX FIX
             if (plural && regName) fromSelected ? currency = regName : currency = regName; // alt output and alt plural, ex. PEN
-            if (!regName && !plural) fromSelected ? currency = from.slice(0,-5) : currency = to.slice(0,-5); // all other currencies
+            if (!regName && !plural) fromSelected ? currency = from : currency = to; // all other currencies
         }
 
         fromSelected ? setOutput1(currency) : setOutput2(currency);

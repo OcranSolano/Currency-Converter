@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { currencies } from './Currencies';
 
 const currencyNames = []
-currencies.map((coin) => {currencyNames.push(coin.name)});
+currencies.map((curr) => {currencyNames.push(curr.name)});
 
 export function FromCurrency(props) {
     const [ fromCurrency, setFromCurrency ] = useState(props.data[1]);
