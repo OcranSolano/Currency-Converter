@@ -74,26 +74,47 @@ export default function Convert(props) {
         }
 
         setButtonText('Refresh');
-        const btn = document.getElementsByClassName('btn')[0];
-        if(firstClick) {
-            btn.style.opacity = 0;
-            setTimeout(function () {
-                btn.style.opacity = 1;
+        if(enabled) { // refresh css
+            const bottom = document.getElementsByClassName('bottom')[0];
+            const rates = document.getElementsByClassName('rates')[0];
+            const datetime = document.getElementsByClassName('datetime-2')[0];
+
+            
+            bottom.style.opacity = 0.3;
+            rates.style.opacity = 0.3;
+            
+            setTimeout(() => {
+                setLoading(false);
+                bottom.style.opacity = 1;
+                rates.style.opacity = 1;
+                datetime.style.color = 'rgb(59, 203, 133)';
+                setTimeout(function () {
+                    datetime.style.color = 'rgb(92, 102, 123)';
+                }, 350)
             }, 350)
         }
-        setFirsClick(false);
     }
 
     useEffect(() => {
-        // const bottom = document.getElementsByClassName('bottom')[0];
-        // const rates = document.getElementsByClassName('rates')[0];
-
-        // if (from !== to) {
-        //     bottom.style.opacity = '1';
-        //     rates.style.opacity = '1';
-        // }
         setLoading(false)
-        
+
+        const btn = document.getElementsByClassName('btn')[0];
+        if(firstClick && enabled) {
+            btn.style.visibility = 'hidden';
+            btn.style.opacity = 0;
+            setTimeout(() => {
+                btn.style.visibility = 'visible';
+                btn.style.opacity = 1;
+            }, 350);
+            
+        setFirsClick(false);
+        }
+
+        const datetime = document.getElementsByClassName('datetime-2')[0];
+        datetime.style.color = 'rgb(59, 203, 133)';
+            setTimeout(function () {
+                datetime.style.color = 'rgb(92, 102, 123)';
+            }, 350)
     }, [result])
 
     useEffect(() => {

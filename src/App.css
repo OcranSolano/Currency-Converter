@@ -92,6 +92,7 @@ select { border: 1px solid #333; border-radius: 0.3em; }
 .btn {
   justify-self: end;
   width: 35%;
+  transition: opacity .35s;
 }
 
 span { /* for rial symbol in output */

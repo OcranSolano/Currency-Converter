@@ -71,7 +71,7 @@ export default function Output(props) {
         const bottom = document.getElementsByClassName('bottom')[0];
         const symbol = document.getElementsByClassName('symbol-result')[0];
         const datetime = document.getElementsByClassName('datetime-2')[0];
-        const rates = document.getElementsByClassName('rates')[0]
+        const rates = document.getElementsByClassName('rates')[0];
 
         if(!enabled) {
             bottom.style.opacity = 0.3;
@@ -118,7 +118,7 @@ export default function Output(props) {
         if(to === from) condition = Number(amount);
         // console.log('FROMSELECTED: ' + fromSelected)
         // console.log('CONDITION INTEGET: ' + condition)
-        console.log('RESULT API: ' + resultAfterAPI, result)
+        // console.log('RESULT API: ' + resultAfterAPI, result)
 
         if (condition !== 1) {
             if (regName && !plural) currency = regName + 's'; // alt output, no plural, ex. GBP
