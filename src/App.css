@@ -147,7 +147,7 @@ span { /* for rial symbol in output */
 
 .alert {
   opacity: 0;
-  transition: opacity .35s ease .5s;
+  transition: opacity .35s ease .35s;
 }
 
 .rates,

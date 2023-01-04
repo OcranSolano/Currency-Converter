@@ -78,7 +78,6 @@ export default function Convert(props) {
             const bottom = document.getElementsByClassName('bottom')[0];
             const rates = document.getElementsByClassName('rates')[0];
             const datetime = document.getElementsByClassName('datetime-2')[0];
-
             
             bottom.style.opacity = 0.3;
             to === from ? rates.style.opacity = 0 : rates.style.opacity = 0.3;
