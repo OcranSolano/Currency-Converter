@@ -63,11 +63,21 @@ export default function Convert(props) {
             setTimeout(() => {
                 setLoading(false);
             }, 500)
-        } else {
-            fetch(`https://api.apilayer.com/exchangerates_data/convert?to=${to}&from=${from}&amount=${amount}`, requestOptions)
-            //.then(response => response.text())
+        } else { // fluctuation then conversion
+            fetch(`https://api.apilayer.com/exchangerates_data/fluctuation?start_date=2022-01-10&end_date=2023-01-10&base=${from}&symbols=${to}`, requestOptions)
             .then(response => response.json())
             //.then(result => console.log(result))
+            .then(result => props.fluctuation1(result))
+            .catch(error => console.log('error', error));
+
+            fetch(`https://api.apilayer.com/exchangerates_data/fluctuation?start_date=2022-01-10&end_date=2023-01-10&base=${to}&symbols=${from}`, requestOptions)
+            .then(response => response.json())
+            //.then(result => console.log(result))
+            .then(result => props.fluctuation2(result))
+            .catch(error => console.log('error', error));
+
+            fetch(`https://api.apilayer.com/exchangerates_data/convert?to=${to}&from=${from}&amount=${amount}`, requestOptions)
+            .then(response => response.json())
             .then(result => props.result(result))
             .then(console.log('DONE'))
             .catch(error => alert('error', error));
@@ -119,6 +129,13 @@ export default function Convert(props) {
     useEffect(() => {
         if(!enabled) setButtonText('Convert');
     }, [enabled])
+
+    function timeseries() { // for line graph
+        fetch("https://api.apilayer.com/exchangerates_data/timeseries?start_date=2022-12-10&end_date=2023-01-10&base=USD&symbols=BRL", requestOptions)
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
+    }
 
     return (
         <button 

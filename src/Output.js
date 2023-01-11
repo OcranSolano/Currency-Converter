@@ -17,6 +17,10 @@ export default function Output(props) {
     let rate = props.data[5];
     let inverse = 1 / rate;
 
+    let changePercent1 = props.data[6];
+    let changePercent2 = props.data[7];
+
+
     const [ fromSymbol, setFromSymbol ] = useState('$');
     const [ toSymbol, setToSymbol ] = useState('€');
 
@@ -150,6 +154,10 @@ export default function Output(props) {
             ${currentdate.getFullYear()}, 
             ${currentdate.getHours()}:${currentdate.getMinutes()}:${currentdate.getSeconds()} CST`
 
+    let timeRange = '(1Y)';
+    let positive = <span className='positive'>▲ {changePercent2}%</span>
+    let negative = <span className='negative'> ▼ {changePercent1}%</span>
+
     return (
         <>
             <div className='result'>
@@ -162,8 +170,8 @@ export default function Output(props) {
                     <h3 className='output-2'><span className='symbol-result'><span>{toSymbol}</span><span>{to === from ? formattedAmount : result}&nbsp;</span></span>{output2}</h3>
                 </div>
                 <div className='rates'>
-                    <p>1 {props.data[1].slice(0,3)} = {enabled ? nf.format(rate) : ''} {props.data[2].slice(0,3)}</p>
-                    <p>1 {props.data[2].slice(0,3)} = {enabled ? nf.format(inverse) : ''} {props.data[1].slice(0,3)}</p>
+                    <p>1 {props.data[1].slice(0,3)} = {enabled ? nf.format(rate) : ''} {props.data[2].slice(0,3)} {changePercent1 > 0 ? positive : negative} {timeRange}</p>
+                    <p>1 {props.data[2].slice(0,3)} = {enabled ? nf.format(inverse) : ''} {props.data[1].slice(0,3)} {changePercent2 > 0 ? positive : negative} {timeRange}</p>
                 </div>
                 <div><span className='datetime-1'>As of&nbsp;</span><span className='datetime-2'>{datetime}</span></div>
             </div>
