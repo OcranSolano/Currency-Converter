@@ -178,6 +178,13 @@ span { /* for rial symbol in output */
   color: rgb(179, 0, 33);
 }
 
+.positive,
+.negative,
+.percent1,
+.percent2 {
+  display: initial;
+}
+
 .timerange {
   color: rgb(92, 102, 123);
 }

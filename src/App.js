@@ -17,8 +17,8 @@ export default function App() {
     null, // result [3]
     false, // enabled [4]
     null, // exchange rate [5]
-    null, // change percent [6]
-    null // change percent opposite [7]
+    1, // change percent [6]
+    0 // change percent opposite [7]
   ];
   
   const [ data, setData ] = useState(defaults); // dependencies for all components (props)
@@ -34,17 +34,17 @@ export default function App() {
   // each 'new' function is propped a value via onChange handlers in input components. updateData() is called with value and index as params. In it, the value is saved locally, and then used to update the DATA state indirectly 
 
   function newAmount(prop) { // prop func to Amount.js
-    console.log(`Parent received ${prop} as AMOUNT from child`);
+    //console.log(`Parent received ${prop} as AMOUNT from child`);
     updateData(prop, 0);
   }
 
   function newFrom(prop) { // prop func to Select.js
-    console.log(`Parent received ${prop} as FROM from child`);
+    //console.log(`Parent received ${prop} as FROM from child`);
     updateData(prop, 1);
   }
 
   function newTo(prop) { // prop func to Select.js
-    console.log(`Parent received ${prop} as TO from child`);
+    //console.log(`Parent received ${prop} as TO from child`);
     updateData(prop, 2);
   }
 
@@ -56,6 +56,8 @@ export default function App() {
 
     if(data[1] === data[2] && x === 0) updatedProps[3] = prop; // result [3]
     updatedProps[4] = false; // !enable [4]
+    updatedProps[6] = 1; // percent opposite [6]
+    updatedProps[7] = 0; // change percent opposite [7]
 
     setData(updatedProps);
   }
@@ -63,26 +65,33 @@ export default function App() {
   // RESULT
   // API fetch not used when from = to. Instead, AMOUNT is used as result for output. As an input ele, AMOUNT is of type STRING and must be converted to a NUMBER prior to updating DATA state and passing to the OUTPUT component
 
-  let changePercent1;
   function fluctuation1(prop) {
     let obj = prop.rates;
     let keys = Object.keys(obj)
     console.log(`Change % for ${acronym1} is ${prop.rates[keys[0]].change_pct}`)
 
-    changePercent1 = prop.rates[keys[0]].change_pct;
+    let changePercent1 = prop.rates[keys[0]].change_pct;
+    updateChangePercents(changePercent1, 6)
   }
 
-  let changePercent2;
   function fluctuation2(prop) {
     let obj = prop.rates;
     let keys = Object.keys(obj)
     console.log(`Change % for ${acronym2} is ${prop.rates[keys[0]].change_pct}`)
 
-    changePercent2 = prop.rates[keys[0]].change_pct;
+    let changePercent2 = prop.rates[keys[0]].change_pct;
+    updateChangePercents(changePercent2, 7)
+
+  }
+
+  function updateChangePercents(percent, i) {
+    const updatedProps = [...data];
+    updatedProps[i] = percent;
+    setData(updatedProps);
   }
 
   function result(prop) { // prop func to Convert.js
-    console.log(`Parent received ${prop} as RESULT from child`);
+    //console.log(`Parent received ${prop} as RESULT from child`);
     
     let apiResult;
     typeof prop === 'string' ? apiResult = Number(prop) : apiResult = prop.result; // convert to string if from = to
@@ -95,13 +104,9 @@ export default function App() {
     updatedProps[3] = nf.format(apiResult); // result [3]
     updatedProps[4] = true; // enabled [4]
     updatedProps[5] = exchangeRate;
-    updatedProps[6] = changePercent1; // change percent [6]
-    updatedProps[7] = changePercent2; // change percent opposite [7]
 
     setData(updatedProps);
   }
-
-  console.log(data)
 
   // SWAP
   // selectedCurrency global arr is populated with current FROM and TO states. This assignment is handled by the getFromState and getToState prop functions which are called in useEffect hooks in the currency components. The hooks send the state values as props upon first render and each time the selection is altered/swapped. Global variables intended so The SWAP function always has access to the currect component states and can update DATA state onClick

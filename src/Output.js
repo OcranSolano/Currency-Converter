@@ -61,19 +61,25 @@ export default function Output(props) {
         const resultDiv = document.getElementsByClassName('result')[0];
         const container = document.getElementsByClassName('container')[0];
         const alert = document.getElementsByClassName('alert')[0];
-        // const positive = document.getElementsByClassName('positive')[0];
-        // const negative = document.getElementsByClassName('negative')[0];
+        const positive = document.getElementsByClassName('positive')[0];
+        const negative = document.getElementsByClassName('negative')[0];
+        const percent1 = document.getElementsByClassName('percent1')[0];
+        const percent2 = document.getElementsByClassName('percent2')[0];
 
         if(enabled) {
             container.style.height = '333.305px';
             resultDiv.style.opacity = '1';
             resultDiv.style.height = '100%';
             alert.style.opacity = '1';
-        //     positive.style.display = 'none';
-        //     negative.style.display = 'none';
-        // } else {
-        //     positive.style.display = 'block';
-        //     negative.style.display = 'block';
+            // positive.style.display = 'inline';
+            // negative.style.display = 'inline';
+            // percent1.style.display = 'inline';
+            // percent2.style.display = 'inline';
+        } else {
+            // positive.style.display = 'none';
+            // negative.style.display = 'none';
+            // percent1.style.display = 'none';
+            // percent2.style.display = 'none';
         }
         
     }, [enabled, result])
@@ -162,8 +168,8 @@ export default function Output(props) {
             ${currentdate.getHours()}:${currentdate.getMinutes()}:${currentdate.getSeconds()} CST`
 
     let timeRange = <span className='timerange'>{'(1Y)'}</span>;
-    let positive = <span className='positive'>▲ <span>{changePercent1 > 1 ? changePercent1 : changePercent2}% </span>{timeRange}</span>
-    let negative = <span className='negative'>▼ <span>{changePercent1 < 1 ? changePercent1 : changePercent2}% </span>{timeRange}</span>
+    let positive = <span className='positive'>▲ <span className='percent1'>{changePercent1 > 1 ? changePercent1 : changePercent2}% </span>{timeRange}</span>
+    let negative = <span className='negative'>▼ <span className='percent2'>{changePercent1 < 1 ? changePercent1 : changePercent2}% </span>{timeRange}</span>
 
     return (
         <>
