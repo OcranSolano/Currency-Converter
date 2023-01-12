@@ -166,6 +166,10 @@ span { /* for rial symbol in output */
   margin: 0;
 }
 
+.rates span {
+  float: unset;
+}
+
 .positive {
   color: rgb(51, 136, 0);
 }
@@ -174,12 +178,9 @@ span { /* for rial symbol in output */
   color: rgb(179, 0, 33);
 }
 
-.positive, 
-.negative {
-  float: unset;
-
+.timerange {
+  color: rgb(92, 102, 123);
 }
-
 
 .rates, 
 .datetime-1

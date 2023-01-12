@@ -61,12 +61,19 @@ export default function Output(props) {
         const resultDiv = document.getElementsByClassName('result')[0];
         const container = document.getElementsByClassName('container')[0];
         const alert = document.getElementsByClassName('alert')[0];
+        // const positive = document.getElementsByClassName('positive')[0];
+        // const negative = document.getElementsByClassName('negative')[0];
 
         if(enabled) {
             container.style.height = '333.305px';
             resultDiv.style.opacity = '1';
             resultDiv.style.height = '100%';
             alert.style.opacity = '1';
+        //     positive.style.display = 'none';
+        //     negative.style.display = 'none';
+        // } else {
+        //     positive.style.display = 'block';
+        //     negative.style.display = 'block';
         }
         
     }, [enabled, result])
@@ -154,9 +161,9 @@ export default function Output(props) {
             ${currentdate.getFullYear()}, 
             ${currentdate.getHours()}:${currentdate.getMinutes()}:${currentdate.getSeconds()} CST`
 
-    let timeRange = '(1Y)';
-    let positive = <span className='positive'>▲ {changePercent2}%</span>
-    let negative = <span className='negative'> ▼ {changePercent1}%</span>
+    let timeRange = <span className='timerange'>{'(1Y)'}</span>;
+    let positive = <span className='positive'>▲ <span>{changePercent1 > 1 ? changePercent1 : changePercent2}% </span>{timeRange}</span>
+    let negative = <span className='negative'>▼ <span>{changePercent1 < 1 ? changePercent1 : changePercent2}% </span>{timeRange}</span>
 
     return (
         <>
@@ -170,8 +177,8 @@ export default function Output(props) {
                     <h3 className='output-2'><span className='symbol-result'><span>{toSymbol}</span><span>{to === from ? formattedAmount : result}&nbsp;</span></span>{output2}</h3>
                 </div>
                 <div className='rates'>
-                    <p>1 {props.data[1].slice(0,3)} = {enabled ? nf.format(rate) : ''} {props.data[2].slice(0,3)} {changePercent1 > 0 ? positive : negative} {timeRange}</p>
-                    <p>1 {props.data[2].slice(0,3)} = {enabled ? nf.format(inverse) : ''} {props.data[1].slice(0,3)} {changePercent2 > 0 ? positive : negative} {timeRange}</p>
+                    <p>1 {props.data[1].slice(0,3)} = {enabled ? nf.format(rate) : ''} {props.data[2].slice(0,3)} {changePercent1 > 0 ? positive : negative}</p>
+                    <p>1 {props.data[2].slice(0,3)} = {enabled ? nf.format(inverse) : ''} {props.data[1].slice(0,3)} {changePercent2 > 0 ? positive : negative}</p>
                 </div>
                 <div><span className='datetime-1'>As of&nbsp;</span><span className='datetime-2'>{datetime}</span></div>
             </div>
