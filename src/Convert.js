@@ -82,6 +82,11 @@ export default function Convert(props) {
             .then(result => props.result(result))
             .then(console.log('CONVERT DONE'))
             .catch(error => alert('error', error));
+
+            // hard code testing
+            // props.fluctuation1(111)
+            // props.fluctuation2(-222)
+            // props.result(999)
         }
 
         setButtonText('Refresh');

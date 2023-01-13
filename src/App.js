@@ -56,7 +56,7 @@ export default function App() {
 
     if(data[1] === data[2] && x === 0) updatedProps[3] = prop; // result [3]
     updatedProps[4] = false; // !enable [4]
-    updatedProps[6] = 1; // percent opposite [6]
+    updatedProps[6] = 1; // change percent [6]
     updatedProps[7] = 0; // change percent opposite [7]
 
     setData(updatedProps);
@@ -64,30 +64,26 @@ export default function App() {
 
   // RESULT
   // API fetch not used when from = to. Instead, AMOUNT is used as result for output. As an input ele, AMOUNT is of type STRING and must be converted to a NUMBER prior to updating DATA state and passing to the OUTPUT component
-
+  let changePercent1;
   function fluctuation1(prop) {
     let obj = prop.rates;
     let keys = Object.keys(obj)
     console.log(`Change % for ${acronym1} is ${prop.rates[keys[0]].change_pct}`)
 
-    let changePercent1 = prop.rates[keys[0]].change_pct;
-    updateChangePercents(changePercent1, 6)
+    changePercent1 = prop.rates[keys[0]].change_pct;
+
+    //changePercent1 = prop; // test without API
   }
 
+  let changePercent2;
   function fluctuation2(prop) {
     let obj = prop.rates;
     let keys = Object.keys(obj)
     console.log(`Change % for ${acronym2} is ${prop.rates[keys[0]].change_pct}`)
 
-    let changePercent2 = prop.rates[keys[0]].change_pct;
-    updateChangePercents(changePercent2, 7)
+    changePercent2 = prop.rates[keys[0]].change_pct;
 
-  }
-
-  function updateChangePercents(percent, i) {
-    const updatedProps = [...data];
-    updatedProps[i] = percent;
-    setData(updatedProps);
+    // changePercent2 = prop; // test without API
   }
 
   function result(prop) { // prop func to Convert.js
@@ -96,15 +92,16 @@ export default function App() {
     let apiResult;
     typeof prop === 'string' ? apiResult = Number(prop) : apiResult = prop.result; // convert to string if from = to
 
-    let exchangeRate;
+    let exchangeRate = 5.5;
     typeof prop === 'string' ? exchangeRate = 1 : exchangeRate = prop.info.rate; // amount is a string if from = to
 
     const nf = Intl.NumberFormat();
     const updatedProps = [...data];
     updatedProps[3] = nf.format(apiResult); // result [3]
     updatedProps[4] = true; // enabled [4]
-    updatedProps[5] = exchangeRate;
-
+    updatedProps[5] = exchangeRate; // exchange rate [5]
+    updatedProps[6] = changePercent1; // change percent [6]
+    updatedProps[7] = changePercent2; // change percent opposite [7]
     setData(updatedProps);
   }
 
